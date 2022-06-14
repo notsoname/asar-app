@@ -6,28 +6,28 @@ import routes from "./constans/routes";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { checkAuth, login } from "./redux/AuthReducers/actionCreators";
 import style from "./styles/app.module.scss"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const dispatch = useAppDispatch()
-  const {auth} = useAppSelector(state => state.AuthReducer)
+  const {auth, isLoading} = useAppSelector(state => state.AuthReducer)
   
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      console.log('refresh')
-      // dispatch(login({"email": "notsoname@gmail.com", "password": "aaa"}));
-      dispatch(checkAuth)
+      dispatch(checkAuth())
     }
   }, [])
 
   if (!auth) {
-    return <LoginForm/>
+    return (
+      isLoading ? <div>Loading</div> : <LoginForm/>
+    )
   }
-
 
   return (
     <div>
       <Header/>
-      <div className={style.container}>
+      <div className="container">
         <Routes>
           {routes.map((route) => (
             <Route

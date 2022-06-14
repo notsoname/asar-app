@@ -31,6 +31,7 @@ export const AuthSlice = createSlice({
             state.isLoading = true;
         },
         [login.rejected.type]: (state,  action: PayloadAction<string>) => {
+            console.log(action)
             state.isLoading = false;
             state.error = action.payload
             state.auth = false;

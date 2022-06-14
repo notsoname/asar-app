@@ -19,7 +19,7 @@ export const login = createAsyncThunk(
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
         } catch (e) {
-            return thunkAPI.rejectWithValue("Не удалось загрузить пользователей")
+            return thunkAPI.rejectWithValue("Не правильный логин/пароль")
         }
     }
 )
@@ -33,7 +33,7 @@ export const logout = createAsyncThunk(
             console.log(response)
             return response;
         } catch (e) {
-            return thunkAPI.rejectWithValue("Не удалось загрузить пользователей")
+            return thunkAPI.rejectWithValue("")
         }
     }
 )
@@ -47,7 +47,7 @@ export const registration = createAsyncThunk(
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
         } catch (e) {
-            return thunkAPI.rejectWithValue("Не удалось загрузить пользователей")
+            return thunkAPI.rejectWithValue("Введены не ввалидные данные")
         }
     }
 )

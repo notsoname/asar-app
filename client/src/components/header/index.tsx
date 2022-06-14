@@ -15,15 +15,15 @@ export default function Header() {
   }
 
   return (
-    <div className={style.header}>
-      <ul>
+    <div className={`${style.header} d-flex justify-content-between align-items-center`}>
+      <ul className="navbar navbar-expand-lg navbar-light">
         {nav.map((nav) => (
           <li key={nav.name}>
-            <Link to={nav.link}>{nav.name}</Link>
+            <Link className="navbar-brand" to={nav.link}>{nav.name}</Link>
           </li>
         ))}
-        <li>{auth ? <button onClick={onLogout}>logout</button> : ''}</li>
       </ul>
+      {auth && <button className="btn btn-primary" onClick={onLogout}>logout</button>}
     </div>
   );
 }

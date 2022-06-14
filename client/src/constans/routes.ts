@@ -1,5 +1,6 @@
 import LoginForm from '../components/loginForm';
 import homePage from '../pages/homePage';
+import PostsPage from '../pages/postsPage';
 
 const routes = [
   {
@@ -9,6 +10,10 @@ const routes = [
   {
     path: "/login",
     component: LoginForm,
+  },
+  {
+    path: "/posts",
+    component: PostsPage,
   },
 ];
 
