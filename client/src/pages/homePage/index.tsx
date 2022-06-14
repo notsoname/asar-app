@@ -2,11 +2,10 @@ import Header from '../../components/header';
 import { useAppSelector } from '../../hooks';
 
 export default function HomePage() {
-  const {users} = useAppSelector(state => state.AuthReducer)
-  console.log(users)
+  const {auth} = useAppSelector(state => state.AuthReducer)
   return (
     <div>
-      Hello
+      {auth ? 'logged' : 'unlogged'}
     </div>
   )
 }

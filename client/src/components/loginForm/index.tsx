@@ -1,12 +1,12 @@
 import { FC, useState } from "react"
-import { useAppDispatch } from "../../hooks"
-import { login, registration } from "../../redux/AuthReducers/actionCreators"
+import { useAppDispatch, useAppSelector } from "../../hooks"
+import { login, logout, registration } from "../../redux/AuthReducers/actionCreators"
 
 const LoginForm: FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const dispatch = useAppDispatch()
-    
+
     const onLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
         dispatch(login({email, password}))
@@ -16,7 +16,6 @@ const LoginForm: FC = () => {
         e.preventDefault()
         dispatch(registration({email, password}))
     }
-
 
     return (
         <form>
