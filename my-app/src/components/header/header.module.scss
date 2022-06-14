@@ -1,0 +1,19 @@
+.header {
+    background-color: grey;
+    padding: 24px;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    color: black;
+    text-decoration: unset;
+    font-weight: 700;
+    transition: 0.3s all;
+    &:hover {
+        transition: 0.3s all;
+        text-decoration: underline;
+    }
+}
