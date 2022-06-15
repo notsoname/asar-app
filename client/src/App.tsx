@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "./hooks";
 import { checkAuth, login } from "./redux/AuthReducers/actionCreators";
 import style from "./styles/app.module.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Loader from "./components/loader/loader";
 
 function App() {
   const dispatch = useAppDispatch()
@@ -20,7 +21,7 @@ function App() {
 
   if (!auth) {
     return (
-      isLoading ? <div>Loading</div> : <LoginForm/>
+      isLoading ? <Loader/> : <LoginForm/>
     )
   }
 

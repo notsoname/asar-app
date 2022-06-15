@@ -18,8 +18,8 @@ export const login = createAsyncThunk(
             console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
-        } catch (e) {
-            return thunkAPI.rejectWithValue("Не правильный логин/пароль")
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue(e.response.data.message)
         }
     }
 )
@@ -46,8 +46,8 @@ export const registration = createAsyncThunk(
             console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
-        } catch (e) {
-            return thunkAPI.rejectWithValue("Введены не ввалидные данные")
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue(e.response.data.message)
         }
     }
 )
@@ -57,11 +57,10 @@ export const checkAuth = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get<AuthResponse>(`${API_URL}/refresh`,{withCredentials: true})
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
-        } catch (e) {
-            return thunkAPI.rejectWithValue("Не удалось загрузить пользователей")
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue(e.response.data.message)
         }
     }
 )

@@ -8,7 +8,7 @@ export default class PostServise {
         return api.get<IPost[]>('/posts')
     }
 
-    static async createPost(): Promise<AxiosResponse<IPost>> {
-        return api.post<IPost>('/posts/create',)
+    static async createPost(name : string, description: string): Promise<AxiosResponse<IPost>> {
+        return api.post<IPost>('/posts/create', {name, description})
     }
 }
