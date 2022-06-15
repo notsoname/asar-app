@@ -1,6 +1,7 @@
 import { FC, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { login, logout, registration } from "../../redux/AuthReducers/actionCreators"
+import MyButton from "../../UI/button"
 import style from "./loginForm.module.scss"
 
 const LoginForm: FC = () => {
@@ -37,8 +38,8 @@ const LoginForm: FC = () => {
                     placeholder="Password"
                 />
                 <div className="d-flex justify-content-between">
-                    <button className="btn btn-primary" onClick={onLogin}>Войти</button>
-                    <button className="btn btn-primary" onClick={onRegister}>Регистрация</button>
+                    <button className="btn btn-primary" onClick={onLogin} disabled={!email || !password}>Войти</button>
+                    <button className="btn btn-primary" onClick={onRegister} disabled={!email || !password}>Регистрация</button>
                 </div>
                 {error && <div>{error}</div>}
             </div>

@@ -1,5 +1,8 @@
 export interface IPost {
-    name: string,
+    title: string,
     description: boolean;
-    id: string;
+    id?: string;
+    image: string;
+    comments?: Object;
+    likes: number;
 }

@@ -5,12 +5,13 @@ import axios from 'axios';
 import { AuthResponse } from '../../models/response/AuthResponse';
 import { API_URL } from '../../api';
 import PostServise from '../../services/PostService';
+import UserService from '../../services/UserService';
 
-export const fetchPosts = createAsyncThunk(
-    'posts/getPosts',
+export const fetchUsers = createAsyncThunk(
+    'users/getUsers',
     async (_, thunkAPI) => {
         try {
-            const response = await PostServise.fetchPosts()
+            const response = await UserService.fetchUsers()
             console.log(response)
             return response.data;
         } catch (e) {
