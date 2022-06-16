@@ -33,7 +33,7 @@ export const AuthSlice = createSlice({
         },
         [login.rejected.type]: (state,  action: PayloadAction<string>) => {
             state.isLoading = false;
-            state.error = action.payload
+            state.error = action.payload;
             state.auth = false;
         },
 
@@ -67,10 +67,11 @@ export const AuthSlice = createSlice({
             state.auth = false;
         },
 
-        [checkAuth.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+        [checkAuth.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
+            console.log(action)
             state.isLoading = false;
             state.error = ''
-            state.user = action.payload;
+            state.user = action.payload.user;
             state.auth = true;
         },
         [checkAuth.pending.type]: (state) => {

@@ -7,11 +7,11 @@ import { API_URL } from '../../api';
 import PostServise from '../../services/PostService';
 import UserService from '../../services/UserService';
 
-export const fetchUsers = createAsyncThunk(
-    'users/getUsers',
-    async (_, thunkAPI) => {
+export const searchUsers = createAsyncThunk(
+    'users/searchUsers',
+    async (email: string, thunkAPI) => {
         try {
-            const response = await UserService.fetchUsers()
+            const response = await UserService.searchUsers(email)
             console.log(response)
             return response.data;
         } catch (e) {

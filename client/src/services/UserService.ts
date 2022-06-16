@@ -1,9 +1,12 @@
 import { AxiosResponse } from "axios";
 import api from "../api";
-import { IUser } from "../models/IUser";
+import { IUser} from "../models/IUser";
+import { UserResponse } from "../models/response/UsersReponse";
 
 export default class UserService {
-    static async fetchUsers(): Promise<AxiosResponse<IUser[]>> {
-        return api.get<IUser[]>('/users')
+    static async searchUsers(email: string): Promise<AxiosResponse<IUser[]>> {
+        return api.get('/users/search', {
+            params: {email}
+        })
     }
 }

@@ -21,11 +21,10 @@ export const fetchPosts = createAsyncThunk(
 
 export const createPost = createAsyncThunk(
     'posts/createPost',
-    async ({name, description}: IPost, thunkAPI) => {
+    async ({title, description}: IPost, thunkAPI) => {
         try {
-            await PostServise.createPost(name, description)
+            await PostServise.createPost(title, description)
             const response = await PostServise.fetchPosts()
-            console.log(response)
             return response.data;
         } catch (e: any) {
             return thunkAPI.rejectWithValue(e.response.data.message)

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../models/IUser";
-import { fetchUsers } from "./actionCreators";
+import { searchUsers } from "./actionCreators";
 
 
 interface UsersState {
@@ -20,15 +20,16 @@ export const UsersSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+        [searchUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+            console.log(action)
             state.isLoading = false;
             state.error = ''
             state.users = action.payload;
         },
-        [fetchUsers.pending.type]: (state) => {
+        [searchUsers.pending.type]: (state) => {
             state.isLoading = true;
         },
-        [fetchUsers.rejected.type]: (state,  action: PayloadAction<string>) => {
+        [searchUsers.rejected.type]: (state,  action: PayloadAction<string>) => {
             console.log(action)
             state.isLoading = false;
             state.error = action.payload

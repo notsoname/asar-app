@@ -9,6 +9,11 @@ interface ILogin {
     email: string;
     password: string;
 }
+interface IRegister {
+    email: string;
+    password: string;
+    nickname: string;
+}
 
 export const login = createAsyncThunk(
     'auth/login',
@@ -40,9 +45,9 @@ export const logout = createAsyncThunk(
 
 export const registration = createAsyncThunk(
     'auth/registration',
-    async ({email, password}:ILogin, thunkAPI) => {
+    async ({email, password, nickname}:IRegister, thunkAPI) => {
         try {
-            const response = await AuthService.registration(email, password)
+            const response = await AuthService.registration(email, password, nickname)
             console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             return response.data;

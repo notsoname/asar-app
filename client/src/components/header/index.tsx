@@ -11,7 +11,7 @@ export default function Header() {
   const onLogout = () => {
     dispatch(logout())
   }
-
+  console.log(user)
   return (
     <div className={`${style.header} d-flex justify-content-between align-items-center`}>
       <ul className="navbar navbar-expand-lg navbar-light">
@@ -22,7 +22,7 @@ export default function Header() {
         ))}
       </ul>
       <div>
-        <span className="p-2">{user.email}</span>
+        <span className="p-2">{user.nickname}</span>
         {auth && <button className="btn btn-primary" onClick={onLogout}>logout</button>}
       </div>
     </div>

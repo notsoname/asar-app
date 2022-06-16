@@ -2,7 +2,7 @@ import { FC } from "react";
 import { IUser } from "../../../models/IUser";
 
 interface UsersItemProps {
-    user: IUser
+    user: IUser;
 }
 
 

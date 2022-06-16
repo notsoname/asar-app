@@ -6,6 +6,7 @@ import style from "./loginForm.module.scss"
 
 const LoginForm: FC = () => {
     const [email, setEmail] = useState<string>('')
+    const [nickname, setNickname] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const dispatch = useAppDispatch()
     const {error} = useAppSelector(state => state.AuthReducer)
@@ -17,7 +18,7 @@ const LoginForm: FC = () => {
 
     const onRegister = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
-        dispatch(registration({email, password}))
+        dispatch(registration({email, password, nickname}))
     }
 
     return (
@@ -25,17 +26,24 @@ const LoginForm: FC = () => {
             <div className={style.wrapper}>
                 <input
                     className="form-control"
+                    onChange={(e) => setNickname(e.target.value)}
+                    value={nickname}
+                    type="text"
+                    placeholder="Никнейм"
+                />
+                <input
+                    className="form-control"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     type="text"
-                    placeholder="Email"
+                    placeholder="Почта"
                 />
                 <input
                     className="form-control"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     type="password"
-                    placeholder="Password"
+                    placeholder="Пароль"
                 />
                 <div className="d-flex justify-content-between">
                     <button className="btn btn-primary" onClick={onLogin} disabled={!email || !password}>Войти</button>
