@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       <Header/>
-      <div className="container">
+      <div className="container-fluid mt-3">
         <Routes>
           {routes.map((route) => (
             <Route

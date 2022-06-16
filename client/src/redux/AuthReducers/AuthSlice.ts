@@ -1,16 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../models/IUser";
+import { AuthResponse } from "../../models/response/AuthResponse";
 import { checkAuth, login, logout, registration } from "./actionCreators";
 
 interface UserState {
-    users: IUser[];
+    user: IUser;
     isLoading: boolean;
     error: string;
     auth: boolean;
 }
 
 const initialState: UserState = {
-    users: [],
+    user: {} as IUser,
     isLoading: false,
     error: '',
     auth: false,
@@ -21,10 +22,10 @@ export const AuthSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [login.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+        [login.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
             state.isLoading = false;
             state.error = ''
-            state.users = action.payload;
+            state.user = action.payload.user;
             state.auth = true;
         },
         [login.pending.type]: (state) => {
@@ -36,10 +37,10 @@ export const AuthSlice = createSlice({
             state.auth = false;
         },
 
-        [registration.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+        [registration.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
             state.isLoading = false;
             state.error = ''
-            state.users = action.payload;
+            state.user = action.payload.user;
             state.auth = true;
         },
         [registration.pending.type]: (state) => {
@@ -51,10 +52,10 @@ export const AuthSlice = createSlice({
             state.auth = false;
         },
 
-        [logout.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+        [logout.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
             state.isLoading = false;
             state.error = ''
-            state.users = [];
+            // state.user = [];
             state.auth = false;
         },
         [logout.pending.type]: (state) => {
@@ -66,10 +67,10 @@ export const AuthSlice = createSlice({
             state.auth = false;
         },
 
-        [checkAuth.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+        [checkAuth.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
             state.isLoading = false;
             state.error = ''
-            state.users = action.payload;
+            state.user = action.payload;
             state.auth = true;
         },
         [checkAuth.pending.type]: (state) => {

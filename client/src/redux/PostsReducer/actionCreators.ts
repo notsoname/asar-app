@@ -14,7 +14,7 @@ export const fetchPosts = createAsyncThunk(
             const response = await PostServise.fetchPosts()
             return response.data;
         } catch (e) {
-            return thunkAPI.rejectWithValue("Не правильный логин/пароль")
+            return thunkAPI.rejectWithValue("")
         }
     }
 )

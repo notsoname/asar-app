@@ -4,8 +4,8 @@ const nav = [
       link: "/",
     },
     {
-      name: "Посты",
-      link: "/posts",
+      name: "Пользователи",
+      link: "/users",
     },
   ];
 

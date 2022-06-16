@@ -6,11 +6,9 @@ import { logout } from "../../redux/AuthReducers/actionCreators";
 import style from "./header.module.scss";
 
 export default function Header() {
-  const {auth} = useAppSelector(state => state.AuthReducer)
+  const {auth, user} = useAppSelector(state => state.AuthReducer)
   const dispatch = useAppDispatch()
-
-  const onLogout = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault()
+  const onLogout = () => {
     dispatch(logout())
   }
 
@@ -23,7 +21,10 @@ export default function Header() {
           </li>
         ))}
       </ul>
-      {auth && <button className="btn btn-primary" onClick={onLogout}>logout</button>}
+      <div>
+        <span className="p-2">{user.email}</span>
+        {auth && <button className="btn btn-primary" onClick={onLogout}>logout</button>}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import LoginForm from '../components/loginForm';
 import homePage from '../pages/homePage';
 import PostsPage from '../pages/postsPage';
+import UsersPage from '../pages/usersPage';
 
 const routes = [
   {
@@ -12,8 +13,8 @@ const routes = [
     component: LoginForm,
   },
   {
-    path: "/posts",
-    component: PostsPage,
+    path: "/users",
+    component: UsersPage,
   },
 ];
 
