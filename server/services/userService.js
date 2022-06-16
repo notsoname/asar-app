@@ -7,7 +7,7 @@ const ApiError = require('../exceptions/apiError');
 const TokenService = require('./TokenService');
 
 class UserService {
-    async registration(email, password) {
+    async registration(email, password, nickname) {
         const candidate = await UserModel.findOne({email})
         if (candidate) {
             throw ApiError.BadRequest(`Пользователь ${email} существует`)
@@ -15,10 +15,10 @@ class UserService {
         const hashPassword = await bcrypt.hash(password, 3)
         const activationLink = uuid.v4()
 
-        const user = await UserModel.create({email, password: hashPassword, activationLink})
+        const user = await UserModel.create({email, nickname, password: hashPassword, activationLink})
         // await MailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`);
 
-        const userDto = new UserDto(user); // id, email, isActivated
+        const userDto = new UserDto(user); // id, email, isActivated, nickname
         const tokens = TokenService.generateTokens({...userDto});
         await TokenService.saveToken(userDto.id, tokens.refreshToken);
 
@@ -73,9 +73,28 @@ class UserService {
         await user.save();
     }
 
-    async getUsers() {
-        const users = await UserModel.find();
+    async getUsers(currentUser) {
+        const users = await UserModel.find(
+            {
+            _id: { $ne: currentUser }
+            }
+        );
         return users;
+    }
+
+    async getUser(email, currentUser) {
+        if (!email) {
+            throw new Error('User not found')
+        }
+        const user = await UserModel.find(
+            {
+            "$or":[
+                {email: {$regex: email}},
+                ]
+            },
+            // { _id: { $ne: currentUser } }
+            )
+        return user;
     }
 }
 
