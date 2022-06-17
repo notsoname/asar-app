@@ -1,4 +1,5 @@
 import { FC, useState } from "react"
+import { NavLink } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { login, logout, registration } from "../../redux/AuthReducers/actionCreators"
 import MyButton from "../../UI/button"
@@ -8,6 +9,8 @@ const LoginForm: FC = () => {
     const [email, setEmail] = useState<string>('')
     const [nickname, setNickname] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [register, setRegister] = useState<boolean>(false)
+    
     const dispatch = useAppDispatch()
     const {error} = useAppSelector(state => state.AuthReducer)
 
@@ -24,13 +27,15 @@ const LoginForm: FC = () => {
     return (
         <form className={style.login}>
             <div className={style.wrapper}>
-                <input
-                    className="form-control"
-                    onChange={(e) => setNickname(e.target.value)}
-                    value={nickname}
-                    type="text"
-                    placeholder="Никнейм"
-                />
+                {register && 
+                    <input
+                        className="form-control"
+                        onChange={(e) => setNickname(e.target.value)}
+                        value={nickname}
+                        type="text"
+                        placeholder="Никнейм"
+                    />
+                }
                 <input
                     className="form-control"
                     onChange={(e) => setEmail(e.target.value)}
@@ -45,9 +50,16 @@ const LoginForm: FC = () => {
                     type="password"
                     placeholder="Пароль"
                 />
-                <div className="d-flex justify-content-between">
-                    <button className="btn btn-primary" onClick={onLogin} disabled={!email || !password}>Войти</button>
-                    <button className="btn btn-primary" onClick={onRegister} disabled={!email || !password}>Регистрация</button>
+                <div className="d-flex flex-column justify-content-between">
+                    {register ? <>
+                                    <button className="btn btn-primary" onClick={onRegister} disabled={!email || !password}>Регистрация</button>
+                                    <div>Имеется аккаунт? <NavLink to={""} onClick={() => setRegister(!register)}>логин</NavLink></div>
+                                </>
+                              : <>
+                                    <button className="btn btn-primary" onClick={onLogin} disabled={!email || !password}>Войти</button>
+                                    <div>Нет аккаунта? <NavLink to={""} onClick={() => setRegister(!register)}>зарегистрироваться</NavLink></div>
+                                </>
+                    }
                 </div>
                 {error && <div>{error}</div>}
             </div>

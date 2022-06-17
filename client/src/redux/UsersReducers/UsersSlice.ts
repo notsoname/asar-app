@@ -21,7 +21,6 @@ export const UsersSlice = createSlice({
     reducers: {},
     extraReducers: {
         [searchUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
-            console.log(action)
             state.isLoading = false;
             state.error = ''
             state.users = action.payload;

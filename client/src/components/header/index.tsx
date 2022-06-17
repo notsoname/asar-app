@@ -22,7 +22,7 @@ export default function Header() {
         ))}
       </ul>
       <div>
-        <span className="p-2">{user.nickname}</span>
+        <Link to={"profile"} className="p-2">{user.nickname}</Link>
         {auth && <button className="btn btn-primary" onClick={onLogout}>logout</button>}
       </div>
     </div>
