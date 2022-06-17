@@ -12,14 +12,14 @@ class UserControllers {
         }
     }
 
-    async getUser(req, res) {
+    async getUser(req, res, next) {
         console.log(req.user.id)
         try {
             // const user =  await UserService.getUser(req.params.id)
             const user =  await UserService.getUser(req.query.email, req.user.id)
             return res.json(user)
         } catch (error) {
-            res.status(500).json(error.message)
+            next(e)
         }
     }
 }

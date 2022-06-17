@@ -36,8 +36,9 @@ class UserService {
         }
         const userDto = new UserDto(user)
         const tokens = TokenService.generateTokens({...userDto});
-        await TokenService.saveToken(userDto.id, tokens.refreshToken);
 
+        await TokenService.saveToken(userDto.id, tokens.refreshToken);
+        
         return {...tokens, user: userDto}
     }
 
@@ -58,7 +59,6 @@ class UserService {
         const user = await UserModel.findById(userData.id);
         const userDto = new UserDto(user);
         const tokens = TokenService.generateTokens({...userDto});
-
         await TokenService.saveToken(userDto.id, tokens.refreshToken);
         return {...tokens, user: userDto}
     }
@@ -84,7 +84,7 @@ class UserService {
 
     async getUser(email, currentUser) {
         if (!email) {
-            throw new Error('User not found')
+            throw ApiError.BadRequest("Пользователь не найден")
         }
         const user = await UserModel.find(
             {

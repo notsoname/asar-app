@@ -1,19 +1,17 @@
 const bcrypt = require('bcrypt');
-const FreindModel = require('../models/FreindModel');
 const ApiError = require('../exceptions/apiError');
+const FriendModel = require('../models/FriendModel');
+const async = require('async');
+const friends = require("mongoose-friends");
+const UserModel = require('../models/UserModel');
 
 class FriendService {
-    async getFriends() {
-        const friends = await FreindModel.find();
-        return users;
+
+    async sendRequest(userId = "62ac28d667bfae04959c3bae", currentId) {
+       const request = friends.requestFriend(userId, currentId)
+       console.log(request)
+       return request
     }
 
-    async addFriend(id) {
-        if (id) {
-            throw ApiError.BadRequest(`Пользователь ${email} не существует`)
-        }
-        const id =
-    }
 }
-
 module.exports = new FriendService();
