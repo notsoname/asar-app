@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { IUser } from "../../../models/IUser";
 
 interface UsersItemProps {
@@ -8,7 +9,7 @@ interface UsersItemProps {
 
 const UsersItem: FC<UsersItemProps> = ({user}) => {
     return (
-        <div>{user.email}</div>
+        <Link to={user.nickname}>{user.email}</Link>
     )
 }
 

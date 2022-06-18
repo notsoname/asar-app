@@ -1,13 +1,22 @@
-import { FC } from "react";
-import { useAppSelector } from "../../hooks";
+import { FC, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { searchUsers } from "../../redux/UsersReducers/actionCreators";
 
 const Profile: FC = () => {
-    const {user} = useAppSelector(state => state.AuthReducer)
-    console.log(user)
+    const dispatch = useAppDispatch()
+    const {id} = useParams()
+    useEffect(() => {
+        if (id) {
+            dispatch(searchUsers(id))
+        }
+    }, [])
+    const {users} = useAppSelector(state => state.UsersRecuder)
+    console.log(users)
     return (
         <div>
-            <img src={user.avatar} alt="" />
-            <div>{user.email}</div>
+            <img src={users[0].avatar} alt="avatar"/>
+            <div>{users[0].nickname}</div>
         </div>
     )
 }

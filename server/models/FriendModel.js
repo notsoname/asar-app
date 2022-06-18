@@ -2,9 +2,9 @@ const {Schema, model} = require('mongoose');
 
 
 const FriendsSchema = new Schema({
-    participants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-    requestTo: {type: Schema.Types.ObjectId, ref: 'User'},
-    accepted: {tyoe: Boolean, default:false}
+  requester: {type: String, required: true},
+  recipient: {type: String,required: true},
+  status: {type: String,required: true }
   });
 
-module.exports = model('Friends', FriendsSchema);
+module.exports = model('friends', FriendsSchema);

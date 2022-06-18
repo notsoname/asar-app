@@ -8,17 +8,14 @@ const UserSchema = new Schema({
     isActivated: {type: Boolean, default: true},
 	avatar: {type: String, default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR_5Qqe10mSNqAjR1pBmEX4OvqNksrEewsGiSxWGUtIg7Je0m8SsmE2KvRfFO-Q3OxYkY&usqp=CAU'},
     activationLink: {type: String},
-    sentRequest:[{
-		username: {type: String, default: ''}
-	}],
 	request: [{
-		userId: {type: Schema.Types.ObjectId, ref: 'User'},
-		username: {type: String, default: ''}
+		nickname: {type: String, default: ''}
 	}],
-    friends: [{
-		friendId: {type: Schema.Types.ObjectId, ref: 'User'},
-		friendName: {type: String, default: ''}
-	}],
+    requestStatus: [{
+        nickname: {type: String, default: ''},
+        status: {type: Boolean, default: false}
+    }],
+    friends: [{type: String, default: ''}],
 	totalRequest: {type: Number, default:0}
 })
 UserSchema.plugin(friends({pathName: "friends"}))

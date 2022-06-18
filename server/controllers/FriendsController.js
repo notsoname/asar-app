@@ -5,12 +5,12 @@ const UserService = require('../services/UserService.js');
 class FriendsControllers {
     async sendRequest(req, res, next) {
         try {
-            const searchFriend = await FriendsService.sendRequest(req.query.id, req.user.id);
-            console.log(searchFriend)
-            return res.json(searchFriend)
-        } catch (e) {
+            const {nickname} = req.body;
+            const friend = await FriendsService.sendRequest(req.user.nickname,nickname)
+            res.json(friend)
+          } catch (e) {
             next(e)
-        }
+          }
     }
 }
 

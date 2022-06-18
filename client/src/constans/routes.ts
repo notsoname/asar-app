@@ -18,6 +18,10 @@ const routes = [
     component: UsersPage,
   },
   {
+    path: "/users/:id",
+    component: ProfilePage,
+  },
+  {
     path: "/profile",
     component: ProfilePage,
   },
