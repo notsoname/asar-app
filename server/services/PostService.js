@@ -1,9 +1,12 @@
 const PostModel = require('../models/PostModel.js');
+const PostDto = require('../dtos/PostDto');
+const ApiError = require('../exceptions/apiError.js');
 
 class PostService {
-    async create(post ) {
+    async create(post) {
         const createdPost = await PostModel.create(post);
-        return createdPost;
+        const postDto = new PostDto(createdPost); 
+        return {post: postDto};
     }
 
     async getAll() {
@@ -15,22 +18,48 @@ class PostService {
         if (!id) {
             throw new Error('Post not found')
         }
-        const post = await PostModel.findById(id)
+        const post = await PostModel.findById(id);
         return post;
+    }
+
+    async getMyPosts(user) {
+        console.log(user)
+        const myPosts = await PostModel.find({postedBy: user}
+            // {
+            //     "$or":[
+            //         {postedBy: {$regex: user}},
+            //         ]
+            // },
+        );
+        // if (myPosts.length == 0) {
+        //     throw ApiError.BadRequest("У вас нет постов")
+        // }
+        return myPosts;
     }
 
     async like(post, userId) {
         if (!post._id) {
             throw new Error('Post not found')
         }
-        const likedPosts = await PostModel.findByIdAndUpdate(post._id, {$push: {likes: userId}}, {new: true})
+        const likedPosts = await PostModel.findByIdAndUpdate(post._id, {$push: {likes: userId}}, {new: true});
+        return likedPosts;
     }
 
     async unlike(post, userId) {
         if (!post._id) {
             throw new Error('Post not found')
         }
-        const likedPosts = await PostModel.findByIdAndUpdate(post._id, {$pull: {likes: userId}}, {new: true})
+        const unlikedPost = await PostModel.findByIdAndUpdate(post._id, {$pull: {likes: userId}}, {new: true});
+        return unlikedPost;
+    }
+
+    async createComment(id,comment) {
+        console.log(comment)
+        if (!id) {
+            throw new Error('Post not found')
+        }
+        const newComment = await PostModel.findByIdAndUpdate(id, {$push: {comments: comment}}, {new: true})
+        return newComment;
     }
 
     async update(post) {

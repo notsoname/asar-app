@@ -3,7 +3,7 @@ const PostService = require('../services/PostService.js');
 class PostContollers {
     async create(req, res) {
         const {title, description, image} = req.body;
-        const postedBy = req.user.id
+        const postedBy = req.user.nickname;
         try {
             const post = await PostService.create({title, description, image, postedBy})
             res.json(post)
@@ -30,17 +30,39 @@ class PostContollers {
         }
     }
 
+    async getMyPosts(req, res) {
+        console.log(req.user.nickname)
+        try {
+            const posts =  await PostService.getMyPosts(req.user.nickname)
+            return res.json(posts)
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+    }
+
     async like(req, res) {
         try {
-            const like = await PostService.like(req.body, req.user.id)
+            const like = await PostService.like(req.body, req.user.nickname)
             return res.json(like)
         } catch (error) {
             res.status(500).json(error.message)
         }
     }
+
     async unlike(req, res) {
         try {
-            const like = await PostService.unlike(req.body, req.user.id)
+            const like = await PostService.unlike(req.body, req.user.nickname)
+            return res.json(like)
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+    }
+
+    async createComment(req, res) {
+        const {text, _id} = req.body
+        const postedBy = req.user.nickname;
+        try {
+            const like = await PostService.createComment(_id,{text, postedBy})
             return res.json(like)
         } catch (error) {
             res.status(500).json(error.message)
