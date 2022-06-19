@@ -22,19 +22,14 @@ class PostService {
         return post;
     }
 
-    async getMyPosts(user) {
+    async getUserPosts(user) {
         console.log(user)
-        const myPosts = await PostModel.find({postedBy: user}
-            // {
-            //     "$or":[
-            //         {postedBy: {$regex: user}},
-            //         ]
-            // },
+        const userPosts = await PostModel.find({postedBy: user}
         );
         // if (myPosts.length == 0) {
         //     throw ApiError.BadRequest("У вас нет постов")
         // }
-        return myPosts;
+        return userPosts;
     }
 
     async like(post, userId) {

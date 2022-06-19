@@ -9,4 +9,10 @@ export default class UserService {
             params: {email}
         })
     }
+
+    static async getUser(email: string): Promise<AxiosResponse<IUser>> {
+        return api.get('/users/search', {
+            params: {email}
+        })
+    }
 }

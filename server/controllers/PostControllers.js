@@ -30,10 +30,10 @@ class PostContollers {
         }
     }
 
-    async getMyPosts(req, res) {
-        console.log(req.user.nickname)
+    async getUserPosts(req, res) {
+        console.log(req.query.nickname)
         try {
-            const posts =  await PostService.getMyPosts(req.user.nickname)
+            const posts =  await PostService.getUserPosts(req.query.nickname)
             return res.json(posts)
         } catch (error) {
             res.status(500).json(error.message)

@@ -12,7 +12,18 @@ export const searchUsers = createAsyncThunk(
     async (email: string, thunkAPI) => {
         try {
             const response = await UserService.searchUsers(email)
-            console.log(response)
+            return response.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue("")
+        }
+    }
+)
+
+export const getUser = createAsyncThunk(
+    'users/getUser',
+    async (email: string, thunkAPI) => {
+        try {
+            const response = await UserService.getUser(email)
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("")

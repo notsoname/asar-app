@@ -20,7 +20,6 @@ export const login = createAsyncThunk(
     async ({email, password}:ILogin, thunkAPI) => {
         try {
             const response = await AuthService.login(email, password)
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
         } catch (e: any) {
@@ -35,7 +34,6 @@ export const logout = createAsyncThunk(
         try {
             const response = await AuthService.logout()
             localStorage.removeItem('token')
-            console.log(response)
             return response;
         } catch (e) {
             return thunkAPI.rejectWithValue("")
@@ -48,7 +46,6 @@ export const registration = createAsyncThunk(
     async ({email, password, nickname}:IRegister, thunkAPI) => {
         try {
             const response = await AuthService.registration(email, password, nickname)
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
         } catch (e: any) {

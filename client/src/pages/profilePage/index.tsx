@@ -3,7 +3,7 @@ import Profile from "../../components/profile";
 
 const ProfilePage: FC = () => {
     return (
-        <div>
+        <div className="d-flex justify-content-center align-items-center flex-column" >
             <Profile/>
         </div>
     )

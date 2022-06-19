@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
-import { createPost, fetchPosts } from "../../../redux/PostsReducer/actionCreators"
+import { createComment, createPost, fetchPosts, likePost, unlikePost } from "../../../redux/PostsReducer/actionCreators"
 import PostItem from "../postsItem"
 
 export default function PostItems() {
@@ -11,17 +11,23 @@ export default function PostItems() {
     const [likes, setLikes] = useState<number>(0)
 
     const {posts} = useAppSelector(state => state.PostReducer)
-
+    const {user} = useAppSelector(state => state.AuthReducer)
     const create = () => {
-        dispatch(createPost({title, description, image, likes}))
+        dispatch(createPost({title, description, image}))
         setTitle("")
         setDescription("")
     }
-    const deletePost = () => {
 
+    const onLike = (_id: string) => {
+        dispatch(likePost(_id))
     }
-    const updatePost = () => {
+    const onUnlike = (_id: string) => {
+        dispatch(unlikePost(_id))
+    }
 
+    const onCreateComment = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: string, text: string) => {
+        e.preventDefault();
+        dispatch(createComment({id, text}))
     }
 
     useEffect(() => {
@@ -37,8 +43,10 @@ export default function PostItems() {
             {posts && posts.map(post => (
                     <PostItem
                         post={post} 
-                        remove={deletePost}
-                        update={updatePost}    
+                        like={(_id) => onLike(_id)}
+                        unlike={(_id) => onUnlike(_id)}
+                        nickname={user.nickname}
+                        onCreateComment={(e, id, text) => onCreateComment(e,id, text)}
                     />
                 ))}
         </div>

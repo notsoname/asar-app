@@ -11,7 +11,6 @@ export default function Header() {
   const onLogout = () => {
     dispatch(logout())
   }
-  console.log(user)
   return (
     <div className={`${style.header} d-flex justify-content-between align-items-center`}>
       <ul className="navbar navbar-expand-lg navbar-light">

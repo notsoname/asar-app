@@ -5,7 +5,7 @@ const postRouter = new Router();
 
 postRouter.post('/posts/create', authMiddleWare, PostControllers.create)
 postRouter.get('/posts', PostControllers.getAll)
-postRouter.get('/posts/myPosts',authMiddleWare, PostControllers.getMyPosts)
+postRouter.get('/posts/userPosts',authMiddleWare, PostControllers.getUserPosts)
 postRouter.get('/posts/:id', PostControllers.getOne)
 postRouter.put('/posts/like',authMiddleWare, PostControllers.like)
 postRouter.put('/posts/unlike',authMiddleWare, PostControllers.unlike)

@@ -6,14 +6,11 @@ import UsersItem from "../usersItem";
 const UsersItems: FC = () => {
     const dispatch = useAppDispatch()
     const [search, setSearch] = useState<string>('')
-
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
         dispatch(searchUsers(search))
     }
-
     const {users} = useAppSelector(state => state.UsersRecuder)
-    console.log(users)
     return (
         <div>
             <form>

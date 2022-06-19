@@ -68,7 +68,6 @@ export const AuthSlice = createSlice({
         },
 
         [checkAuth.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
-            console.log(action)
             state.isLoading = false;
             state.error = ''
             state.user = action.payload.user;
