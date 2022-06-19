@@ -32,7 +32,7 @@ const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComm
                         ? <button onClick={() => unlike(_id)} className="btn btn-primary">unlike</button>
                         : <button onClick={() => like(_id)} className="btn btn-primary">like</button>
                 }
-                {comments && comments.map(comment => (
+                {comments?.map(comment => (
                     <div key={comment._id}><strong>{comment.postedBy}</strong> {comment.text}</div>
                 ))}
                 <input className="form-control" type="text" value={comment} onChange={e => setComment(e.target.value)}/>
