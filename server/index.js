@@ -8,7 +8,7 @@ const authRouter = require('./router/authRouter.js');
 const friendsRouter = require('./router/friendsRouter.js');
 const errorMiddleWare = require('./middlewares/errorMiddleware');
 const usersRouter = require('./router/userRouter.js');
-
+const fileUploader = require('express-fileupload');
 
 const PORT = process.env.PORT || 5000;
 const app = express()
@@ -24,6 +24,7 @@ app.use('/api', postRouter)
 app.use('/api', authRouter)
 app.use('/api', usersRouter)
 app.use('/api', friendsRouter)
+app.use(fileUploader)
 app.use(errorMiddleWare);
 
 const startApp = async () => {

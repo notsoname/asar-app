@@ -35,8 +35,10 @@ const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComm
                 {comments?.map(comment => (
                     <div key={comment._id}><strong>{comment.postedBy}</strong> {comment.text}</div>
                 ))}
-                <input className="form-control" type="text" value={comment} onChange={e => setComment(e.target.value)}/>
-                <button className="btn btn-primary" onClick={(e) => onCreateComment(e, _id, comment)}>комментировать</button>
+                <div className="d-flex">
+                    <input className="form-control" type="text" value={comment} onChange={e => setComment(e.target.value)}/>
+                    <button className="btn btn-primary" disabled={!comment} onClick={(e) => onCreateComment(e, _id, comment)}>комментировать</button>
+                </div>
             </div>
         </div>
     )

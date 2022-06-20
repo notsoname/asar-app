@@ -10,7 +10,7 @@ import { IPost } from '../../models/IPost';
 interface ICreatePost {
     title: string,
     description: string,
-    image: string
+    image: any;
 }
 
 interface ICreateComment {

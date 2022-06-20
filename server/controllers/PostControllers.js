@@ -5,7 +5,7 @@ class PostContollers {
         const {title, description, image} = req.body;
         const postedBy = req.user.nickname;
         try {
-            const post = await PostService.create({title, description, image, postedBy})
+            const post = await PostService.create({title, description, image, postedBy}, req.files.image)
             res.json(post)
         } catch (error) {
             res.status(500).json(error.message)
