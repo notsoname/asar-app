@@ -14,8 +14,8 @@ export default class PostServise {
         })
     }
 
-    static async createPost(name : string, description: string, image: File): Promise<AxiosResponse<IPost>> {
-        return api.post<IPost>('/posts/create', {name, description, image}, )
+    static async createPost(formData: FormData): Promise<AxiosResponse<IPost>> {
+        return api.post<IPost>('/posts/create', formData)
     }
 
     static async likePost(_id: string): Promise<AxiosResponse<IPost>> {

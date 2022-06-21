@@ -6,16 +6,17 @@ import { AuthResponse } from '../../models/response/AuthResponse';
 import { API_URL } from '../../api';
 import PostServise from '../../services/PostService';
 import { IPost } from '../../models/IPost';
-
-interface ICreatePost {
-    title: string,
-    description: string,
-    image: any;
-}
-
 interface ICreateComment {
     id: string;
     text: string;
+}
+
+interface ICreatePost {
+    formData: {
+        title: FormData;
+        description: FormData;
+        image: FormData;
+    }
 }
 
 export const fetchPosts = createAsyncThunk(
@@ -44,9 +45,9 @@ export const getUserPosts = createAsyncThunk(
 
 export const createPost = createAsyncThunk(
     'posts/createPost',
-    async ({title, description, image}: ICreatePost, thunkAPI) => {
+    async (formData: FormData, thunkAPI) => {
         try {
-            await PostServise.createPost(title, description, image)
+            await PostServise.createPost(formData)
             const response = await PostServise.fetchPosts()
             return response.data;
         } catch (e: any) {
@@ -54,6 +55,18 @@ export const createPost = createAsyncThunk(
         }
     }
 )
+// export const createPost = createAsyncThunk(
+//     'posts/createPost',
+//     async ({title, description, image}: ICreatePost, thunkAPI) => {
+//         try {
+//             await PostServise.createPost(title, description, image)
+//             const response = await PostServise.fetchPosts()
+//             return response.data;
+//         } catch (e: any) {
+//             return thunkAPI.rejectWithValue(e.response.data.message)
+//         }
+//     }
+// )
 
 export const likePost = createAsyncThunk(
     'posts/likePost',

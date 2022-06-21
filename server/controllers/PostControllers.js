@@ -2,10 +2,11 @@ const PostService = require('../services/PostService.js');
 
 class PostContollers {
     async create(req, res) {
-        const {title, description, image} = req.body;
+        const {title, description} = req.body;
+        console.log(req.files)
         const postedBy = req.user.nickname;
         try {
-            const post = await PostService.create({title, description, image, postedBy}, req.files.image)
+            const post = await PostService.create({title, description, postedBy}, req.files.image)
             res.json(post)
         } catch (error) {
             res.status(500).json(error.message)
