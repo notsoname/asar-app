@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IPost } from "../../models/IPost";
-import { createPost, fetchPosts, getUserPosts, likePost, unlikePost } from "./actionCreators";
+import { createPost, deletePost, fetchPosts, getUserPosts, likePost, unlikePost } from "./actionCreators";
 
 interface PostsState {
     posts: IPost[];
@@ -56,6 +56,19 @@ export const PostsSlice = createSlice({
             state.isLoading = true;
         },
         [createPost.rejected.type]: (state,  action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = action.payload
+        },
+
+        [deletePost.fulfilled.type]: (state, action: PayloadAction<IPost[]>) => {
+            state.isLoading = false;
+            state.error = ''
+            state.posts = action.payload;
+        },
+        [deletePost.pending.type]: (state) => {
+            state.isLoading = true;
+        },
+        [deletePost.rejected.type]: (state,  action: PayloadAction<string>) => {
             state.isLoading = false;
             state.error = action.payload
         },

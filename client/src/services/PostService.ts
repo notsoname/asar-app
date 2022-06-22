@@ -29,4 +29,8 @@ export default class PostServise {
     static async createComment(_id: string, text: string): Promise<AxiosResponse<IPost>> {
         return api.put<IPost>('/posts/comment', {_id, text})
     }
+
+    static async deletePost(_id: string): Promise<AxiosResponse<IPost>> {
+        return api.delete(`/posts/${_id}/`)
+    }
 }

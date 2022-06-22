@@ -55,6 +55,19 @@ export const createPost = createAsyncThunk(
         }
     }
 )
+
+export const deletePost = createAsyncThunk(
+    'posts/deletePost',
+    async (id: string, thunkAPI) => {
+        try {
+            await PostServise.deletePost(id)
+            const response = await PostServise.fetchPosts()
+            return response.data;
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue(e.response.data.message)
+        }
+    }
+)
 // export const createPost = createAsyncThunk(
 //     'posts/createPost',
 //     async ({title, description, image}: ICreatePost, thunkAPI) => {
