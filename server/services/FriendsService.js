@@ -5,41 +5,21 @@ const async = require('async');
 const UserModel = require('../models/UserModel');
 
 class FriendService {
-    async sendRequest(currentUser,nickname) {
-        const candidate = await UserModel.findOne({nickname});
-        candidate.request.map(current => {
-            if (current.nickname == currentUser) {
-                throw ApiError.BadRequest("")
-            }
-        })
-        console.log(currentUser)
-        candidate.request = [...candidate.request, {nickname: currentUser}];
-        candidate.requestStatus = [...candidate.requestStatus, {nickname: currentUser, status: false}];
-        candidate.totalRequest += 1;
-        await candidate.save();
+    async sendRequest(user, sender) {
+        // if (!user.friends.includes(sender.nickname)) {
+        //     throw ApiError.BadRequest("Пользователь уже в друзьях")
+        // }
+        const candidate = await UserModel.findOneAndUpdate({nickname: user}, {$addToSet: {requests: sender}});
         return candidate;
     }
 
-    async acceptRequest(currentUser,nickname) {
-        const candidate = await UserModel.findOne({nickname});
-        const current = await UserModel.findByIdAndUpdate({requestStatus});
-        console.log(currentUser)
-        // candidate.request = [...candidate.request, {nickname}, ];
-        current.requestStatus = [...candidate.requestStatus, {nickname: nickname, status: true}];
-        current.totalRequest -= 1;
-        await current.save();
-        return current;
+    async acceptRequest(accepter,sender) {
+        // if (!accepter) {
+        //     throw new Error('User not found')
+        // }
+        const friend1 = await UserModel.findOneAndUpdate({nickname: accepter}, {$addToSet: {friends: sender}, $pull: {requests: sender}})
+        const friend2 = await UserModel.findOneAndUpdate({nickname: sender}, {$addToSet: {friends: accepter}})
+        return [friend1, friend2];
     }
-    // async sendRequest(currentUser,nickname) {
-    //     const candidate = await UserModel.findOne({nickname});
-    //     if (candidate.friends.includes(currentUser)) {
-    //         throw ApiError.BadRequest("Пользователь уже в друзьях")
-    //     }
-    //     candidate.friends = [...candidate.friends, currentUser];
-    //     console.log(candidate.friends)
-    //     await candidate.save();
-    //     return candidate;
-    // }
-
 }
 module.exports = new FriendService();

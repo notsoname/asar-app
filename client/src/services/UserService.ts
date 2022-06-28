@@ -10,9 +10,17 @@ export default class UserService {
         })
     }
 
-    static async getUser(email: string): Promise<AxiosResponse<IUser>> {
-        return api.get('/users/search', {
-            params: {email}
+    static async getUser(nickname: string): Promise<AxiosResponse<UserResponse>> {
+        return api.get<UserResponse>('/users/search', {
+            params: {nickname}
         })
+    }
+
+    static async sendFriendRequest(nickname: string): Promise<AxiosResponse<IUser>> {
+        return api.put('/users/friends', {nickname})
+    }
+
+    static async acceptFriendRequest(nickname: string): Promise<AxiosResponse<IUser>> {
+        return api.put('/users/friends/accept', {nickname})
     }
 }

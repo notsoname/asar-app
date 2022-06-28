@@ -4,14 +4,14 @@ import { AuthResponse } from "../../models/response/AuthResponse";
 import { checkAuth, login, logout, registration } from "./actionCreators";
 
 interface UserState {
-    user: IUser;
+    currentUser: IUser;
     isLoading: boolean;
     error: string;
     auth: boolean;
 }
 
 const initialState: UserState = {
-    user: {} as IUser,
+    currentUser: {} as IUser,
     isLoading: false,
     error: '',
     auth: false,
@@ -25,7 +25,7 @@ export const AuthSlice = createSlice({
         [login.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
             state.isLoading = false;
             state.error = ''
-            state.user = action.payload.user;
+            state.currentUser = action.payload.user;
             state.auth = true;
         },
         [login.pending.type]: (state) => {
@@ -40,7 +40,7 @@ export const AuthSlice = createSlice({
         [registration.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
             state.isLoading = false;
             state.error = ''
-            state.user = action.payload.user;
+            state.currentUser = action.payload.user;
             state.auth = true;
         },
         [registration.pending.type]: (state) => {
@@ -70,7 +70,7 @@ export const AuthSlice = createSlice({
         [checkAuth.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
             state.isLoading = false;
             state.error = ''
-            state.user = action.payload.user;
+            state.currentUser = action.payload.user;
             state.auth = true;
         },
         [checkAuth.pending.type]: (state) => {

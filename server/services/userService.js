@@ -82,14 +82,14 @@ class UserService {
         return users;
     }
 
-    async getUser(email, currentUser) {
-        if (!email) {
+    async getUser(nickname, currentUser) {
+        if (!nickname) {
             throw ApiError.BadRequest("Пользователь не найден")
         }
         const user = await UserModel.find(
             {
             "$or":[
-                {email: {$regex: email}},
+                {nickname: {$regex: nickname}},
                 ]
             },
             // { _id: { $ne: currentUser } }

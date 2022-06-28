@@ -42,7 +42,7 @@ class PostService {
         if (!post._id) {
             throw new Error('Post not found')
         }
-        const likedPosts = await PostModel.findByIdAndUpdate(post._id, {$push: {likes: userId}}, {new: true});
+        const likedPosts = await PostModel.findByIdAndUpdate(post._id, {$addToSet: {likes: userId}}, {new: true});
         return likedPosts;
     }
 

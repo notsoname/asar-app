@@ -10,7 +10,7 @@ export default function PostItems() {
     const [image, setImg] = useState<string>('')
 
     const {posts} = useAppSelector(state => state.PostReducer)
-    const {user} = useAppSelector(state => state.AuthReducer)
+    const {currentUser} = useAppSelector(state => state.AuthReducer)
 
 
     const onLike = (_id: string) => {
@@ -42,7 +42,7 @@ export default function PostItems() {
                             post={post} 
                             like={(_id) => onLike(_id)}
                             unlike={(_id) => onUnlike(_id)}
-                            nickname={user.nickname}
+                            nickname={currentUser.nickname}
                             onCreateComment={(e, id, text) => onCreateComment(e,id, text)}
                             deleteP={(_id) => deleteP(_id)}
                         />

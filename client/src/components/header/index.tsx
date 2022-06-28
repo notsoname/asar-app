@@ -6,7 +6,7 @@ import { logout } from "../../redux/AuthReducers/actionCreators";
 import style from "./header.module.scss";
 
 export default function Header() {
-  const {auth, user} = useAppSelector(state => state.AuthReducer)
+  const {auth, currentUser} = useAppSelector(state => state.AuthReducer)
   const dispatch = useAppDispatch()
   const onLogout = () => {
     dispatch(logout())
@@ -21,7 +21,8 @@ export default function Header() {
         ))}
       </ul>
       <div>
-        <Link to={"profile"} className="p-2">{user.nickname}</Link>
+        {currentUser.requests.length > 0 && <div>{currentUser.requests.length}</div>}
+        <Link to={"profile"} className="p-2">{currentUser.nickname}</Link>
         {auth && <button className="btn btn-primary" onClick={onLogout}>logout</button>}
       </div>
     </div>
