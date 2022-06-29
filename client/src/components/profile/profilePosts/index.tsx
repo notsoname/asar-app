@@ -8,7 +8,10 @@ const ProfilePosts: FC<ProfilePostsProps> = ({posts}) => {
     return (
         <div className="d-flex flex-wrap">
             {posts.map(post => (
-                <img className="w-25 p-1" key={post._id} src={post.image} alt="" />
+                <div key={post._id}>  
+                    <img className="w-25 p-1" src={post.image} alt="" />
+                    <div>{post.title}</div>
+                </div>
             ))}
         </div>
     )

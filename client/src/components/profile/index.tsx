@@ -1,4 +1,5 @@
 import { FC, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getUserPosts } from "../../redux/PostsReducer/actionCreators";
@@ -38,11 +39,11 @@ const Profile: FC = () => {
                     <div>{user[0].nickname}</div>
                     {currentUser.nickname === user[0].nickname ? "" : 
                         currentUser.friends.includes(user[0].nickname) 
-                            ? id && <button onClick={() => addFriend(id)}>Delete friend</button> 
-                            : id && <button onClick={() => addFriend(id)}>Add friend</button>
+                            ? id && <Button variant="primary" onClick={() => addFriend(id)}>Delete friend</Button> 
+                            : id && <Button variant="primary" onClick={() => addFriend(id)}>Add friend</Button>
                     }
                     {currentUser.requests.includes(user[0].nickname) 
-                        ? id && <button onClick={() => acceptFriend(id)}>accept</button> 
+                        ? id && <Button variant="primary" onClick={() => acceptFriend(id)}>accept</Button> 
                         : ""
                     }
                 </div>
