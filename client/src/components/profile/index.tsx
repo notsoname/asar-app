@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getUserPosts } from "../../redux/PostsReducer/actionCreators";
 import { acceptFriendRequest, getUser, sendFriendRequest } from "../../redux/UsersReducers/actionCreators";
+import Loader from "../loader/loader";
 import ProfilePosts from "./profilePosts";
 
 const Profile: FC = () => {
@@ -16,7 +17,7 @@ const Profile: FC = () => {
         }
     }, [])
     const {user} = useAppSelector(state => state.UsersRecuder)
-    const {userPosts} = useAppSelector(state => state.PostReducer)
+    const {userPosts, isLoading} = useAppSelector(state => state.PostReducer)
     const {currentUser} = useAppSelector(state => state.AuthReducer)
 
     const addFriend = (nickname: string) => {
@@ -24,6 +25,9 @@ const Profile: FC = () => {
     }
     const acceptFriend = (nickname: string) => {
         dispatch(acceptFriendRequest(nickname))
+    }
+    if (isLoading) {
+        return <Loader/>
     }
 
     return ( 
