@@ -1,4 +1,3 @@
-import axios from "axios";
 import { FC, useState } from "react";
 import { useAppDispatch } from "../../hooks";
 import { createPost } from "../../redux/PostsReducer/actionCreators";
@@ -6,15 +5,7 @@ import PostItems from "../posts/postsItems";
 
 const Home: FC = () => {
     const dispatch = useAppDispatch()
-    // const [title, setTitle] = useState<string>('Hello')
-    // const [description, setDescription] = useState<string>('posts')
     const [file, setFile] = useState<File>()
-    const create = () => {
-        // dispatch(createPost({title, description, image}))
-        // setTitle("")
-        // setDescription("")
-    }
-
     const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
         const fileList = e.target.files;
         if (!fileList) return;
@@ -33,8 +24,6 @@ const Home: FC = () => {
 
     return (
         <div>
-            <input type="file" accept='image/*' onChange={handleImageChange} />
-            <button onClick={uploadFile}>create</button>
             <PostItems/>
         </div>
     )

@@ -52,10 +52,9 @@ export const AuthSlice = createSlice({
             state.auth = false;
         },
 
-        [logout.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+        [logout.fulfilled.type]: (state, action: PayloadAction<any>) => {
             state.isLoading = false;
             state.error = ''
-            // state.user = [];
             state.auth = false;
         },
         [logout.pending.type]: (state) => {

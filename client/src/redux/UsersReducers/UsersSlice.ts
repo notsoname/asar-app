@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../models/IUser";
-import { UserResponse } from "../../models/response/UsersReponse";
 import { acceptFriendRequest, getUser, searchUsers, sendFriendRequest } from "./actionCreators";
-
 
 interface UsersState {
     users: IUser[];
@@ -63,7 +61,6 @@ export const UsersSlice = createSlice({
         },
 
         [getUser.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
-            console.log(action.payload)
             state.isLoading = false;
             state.error = '';
             state.user = action.payload;

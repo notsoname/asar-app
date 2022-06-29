@@ -1,22 +1,8 @@
-import { IUser } from './../../models/IUser';
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import AuthService from '../../services/AuthService';
-import axios from 'axios';
-import { AuthResponse } from '../../models/response/AuthResponse';
-import { API_URL } from '../../api';
 import PostServise from '../../services/PostService';
-import { IPost } from '../../models/IPost';
 interface ICreateComment {
     id: string;
     text: string;
-}
-
-interface ICreatePost {
-    formData: {
-        title: FormData;
-        description: FormData;
-        image: FormData;
-    }
 }
 
 export const fetchPosts = createAsyncThunk(
@@ -62,24 +48,13 @@ export const deletePost = createAsyncThunk(
         try {
             await PostServise.deletePost(id)
             const response = await PostServise.fetchPosts()
+            // const response = await PostServise.deletePost(id)
             return response.data;
         } catch (e: any) {
             return thunkAPI.rejectWithValue(e.response.data.message)
         }
     }
 )
-// export const createPost = createAsyncThunk(
-//     'posts/createPost',
-//     async ({title, description, image}: ICreatePost, thunkAPI) => {
-//         try {
-//             await PostServise.createPost(title, description, image)
-//             const response = await PostServise.fetchPosts()
-//             return response.data;
-//         } catch (e: any) {
-//             return thunkAPI.rejectWithValue(e.response.data.message)
-//         }
-//     }
-// )
 
 export const likePost = createAsyncThunk(
     'posts/likePost',

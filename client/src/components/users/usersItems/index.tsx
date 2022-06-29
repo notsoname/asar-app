@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { searchUsers } from "../../../redux/UsersReducers/actionCreators";
 import UsersItem from "../usersItem";

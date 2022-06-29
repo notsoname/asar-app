@@ -6,7 +6,6 @@ interface UsersItemProps {
     user: IUser;
 }
 
-
 const UsersItem: FC<UsersItemProps> = ({user}) => {
     return (
         <Link to={user.nickname}>{user.email}</Link>

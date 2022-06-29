@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
-import { createComment, createPost, deletePost, fetchPosts, likePost, unlikePost } from "../../../redux/PostsReducer/actionCreators"
+import { createComment, deletePost, fetchPosts, likePost, unlikePost } from "../../../redux/PostsReducer/actionCreators"
 import PostItem from "../postsItem"
 
 export default function PostItems() {
     const dispatch = useAppDispatch()
-    const [title, setTitle] = useState<string>('')
-    const [description, setDescription] = useState<string>('')
-    const [image, setImg] = useState<string>('')
 
     const {posts} = useAppSelector(state => state.PostReducer)
     const {currentUser} = useAppSelector(state => state.AuthReducer)
-
 
     const onLike = (_id: string) => {
         dispatch(likePost(_id))
@@ -39,6 +35,7 @@ export default function PostItems() {
             <div className="d-flex justify-content-center flex-wrap">
                 {posts && posts.map(post => (
                         <PostItem
+                            key={post._id}
                             post={post} 
                             like={(_id) => onLike(_id)}
                             unlike={(_id) => onUnlike(_id)}

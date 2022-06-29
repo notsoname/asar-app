@@ -1,8 +1,7 @@
 import { FC, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks"
-import { login, logout, registration } from "../../redux/AuthReducers/actionCreators"
-import MyButton from "../../UI/button"
+import { login, registration } from "../../redux/AuthReducers/actionCreators"
 import style from "./loginForm.module.scss"
 
 const LoginForm: FC = () => {
@@ -40,6 +39,7 @@ const LoginForm: FC = () => {
                     className="form-control"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
+                    autoComplete="on"
                     type="text"
                     placeholder="Почта"
                 />

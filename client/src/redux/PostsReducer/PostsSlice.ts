@@ -4,15 +4,19 @@ import { createPost, deletePost, fetchPosts, getUserPosts, likePost, unlikePost 
 
 interface PostsState {
     posts: IPost[];
+    userPosts: IPost[];
     post?: IPost;
+    allPosts: IPost[];
     isLoading: boolean;
     error: string;
 }
 
 const initialState: PostsState = {
     posts: [],
+    userPosts: [],
     isLoading: false,
     error: '',
+    allPosts: []
 }
 
 export const PostsSlice = createSlice({
@@ -34,10 +38,9 @@ export const PostsSlice = createSlice({
         },
 
         [getUserPosts.fulfilled.type]: (state, action: PayloadAction<IPost[]>) => {
-            console.log(action.payload)
             state.isLoading = false;
             state.error = ''
-            state.posts = action.payload;
+            state.userPosts = action.payload;
         },
         [getUserPosts.pending.type]: (state) => {
             state.isLoading = true;

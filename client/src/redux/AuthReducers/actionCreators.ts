@@ -1,4 +1,3 @@
-import { IUser } from './../../models/IUser';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import AuthService from '../../services/AuthService';
 import axios from 'axios';
