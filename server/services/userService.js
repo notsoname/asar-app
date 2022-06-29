@@ -25,8 +25,8 @@ class UserService {
         return {...tokens, user: userDto}
     }
 
-    async login(email, password) {
-        const user = await UserModel.findOne({email})
+    async login(nickname, password) {
+        const user = await UserModel.findOne(nickname)
         if (!user) {
             throw ApiError.BadRequest(`Логин/пароль неверный`)
         }
