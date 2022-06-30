@@ -1,4 +1,5 @@
 import LoginForm from '../components/loginForm';
+import AdminPage from '../pages/adminPage';
 import ChatPage from '../pages/chatPage';
 import homePage from '../pages/homePage';
 import PostsPage from '../pages/postsPage';
@@ -29,6 +30,10 @@ const routes = [
   {
     path: "/chat",
     component: ChatPage,
+  },
+  {
+    path: "/admin",
+    component: AdminPage,
   },
 ];
 
