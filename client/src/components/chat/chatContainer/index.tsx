@@ -5,7 +5,7 @@ import { IContact } from "../../../models/IContact";
 import style from "./chatContainer.module.scss";
 import Picker from 'emoji-picker-react';
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { getMessages, sendMessage } from "../../../redux/MessageReducers/actionCreators";
+import { getMessages, sendMessage } from "../../../redux/messageReducers/actionCreators";
 import { io } from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 

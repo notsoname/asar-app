@@ -1,4 +1,4 @@
-import { IMessage } from './../../models/IMessage';
+import { IMessage } from '../../models/IMessage';
 import { sendMessage, getMessages } from './actionCreators';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 

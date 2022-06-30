@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../../hooks"
-import { createComment, deletePost, fetchPosts, likePost, unlikePost } from "../../../redux/PostsReducer/actionCreators"
+import { createComment, deletePost, fetchPosts, likePost, unlikePost } from "../../../redux/postsReducer/actionCreators"
 import PostItem from "../postsItem"
 
 export default function PostItems() {

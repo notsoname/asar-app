@@ -13,6 +13,7 @@ const UserSchema = new Schema({
         status: {type: Boolean, default: false}
     }],
     requests: [{type: String, default: '', ref:"User"}],
+    myRequests: [{type: String, default: '', ref:"User"}],
 })
 
 module.exports = model('User', UserSchema);

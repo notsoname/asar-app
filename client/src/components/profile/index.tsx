@@ -2,19 +2,22 @@ import { FC, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getUserPosts } from "../../redux/PostsReducer/actionCreators";
-import { acceptFriendRequest, getUser, sendFriendRequest } from "../../redux/UsersReducers/actionCreators";
+import { getUserPosts } from "../../redux/postsReducer/actionCreators";
+import { acceptFriendRequest, getUser, sendFriendRequest } from "../../redux/usersReducers/actionCreators";
+
 import Loader from "../loader/loader";
 import ProfilePosts from "./profilePosts";
 
 const Profile: FC = () => {
     const dispatch = useAppDispatch()
-
     const {id} = useParams()
     useEffect(() => {
         if (id) {
             dispatch(getUser(id))
             dispatch(getUserPosts(id))
+        } else {
+            dispatch(getUser(currentUser.nickname))
+            dispatch(getUserPosts(currentUser.nickname))
         }
     }, [])
     const {user} = useAppSelector(state => state.UsersRecuder)
@@ -30,14 +33,13 @@ const Profile: FC = () => {
     if (isLoading) {
         return <Loader/>
     }
-
     return ( 
         <>
             {user[0] 
                 ? <div>
                     <img src={user[0].avatar} alt="avatar"/>
                     <div>{user[0].nickname}</div>
-                    {currentUser.nickname === user[0].nickname ? "" : 
+                    {currentUser.nickname === user[0].nickname || currentUser.requests.includes(user[0].nickname) ? "" : 
                         currentUser.friends.includes(user[0].nickname) 
                             ? id && <Button variant="primary" onClick={() => addFriend(id)}>Delete friend</Button> 
                             : id && <Button variant="primary" onClick={() => addFriend(id)}>Add friend</Button>

@@ -1,4 +1,4 @@
-import LoginForm from '../components/loginForm';
+import LoginForm from '../components/login';
 import AdminPage from '../pages/adminPage';
 import ChatPage from '../pages/chatPage';
 import homePage from '../pages/homePage';

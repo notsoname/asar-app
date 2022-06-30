@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import MessageService from "../../services/MessageService";
+import MessageService from "../../services/messageService";
 
 interface ICreateMessage {
     to: string,
@@ -21,7 +21,7 @@ export const sendMessage = createAsyncThunk(
 )
 
 export const getMessages = createAsyncThunk(
-    'messages/send',
+    'messages/get',
     async (to: string, thunkAPI) => {
         try {
             const response = await MessageService.getMessages(to);

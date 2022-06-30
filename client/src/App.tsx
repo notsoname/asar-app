@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/header";
-import LoginForm from "./components/loginForm";
+import LoginForm from "./components/login";
 import routes from "./constans/routes";
 import { useAppDispatch, useAppSelector } from "./hooks";
-import { checkAuth, login } from "./redux/AuthReducers/actionCreators";
+import { checkAuth, login } from "./redux/authReducers/actionCreators";
 import style from "./styles/app.module.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loader from "./components/loader/loader";

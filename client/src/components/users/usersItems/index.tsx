@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { searchUsers } from "../../../redux/UsersReducers/actionCreators";
+import { searchUsers } from "../../../redux/usersReducers/actionCreators";
 import UsersItem from "../usersItem";
 
 const UsersItems: FC = () => {

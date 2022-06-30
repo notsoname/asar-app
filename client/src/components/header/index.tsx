@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import nav from "../../constans/navigation";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { logout } from "../../redux/AuthReducers/actionCreators";
+import { logout } from "../../redux/authReducers/actionCreators";
 import style from "./header.module.scss";
 
 export default function Header() {

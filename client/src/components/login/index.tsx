@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
 import { useAppDispatch, useAppSelector } from "../../hooks"
-import { login, registration } from "../../redux/AuthReducers/actionCreators"
+import { login, registration } from "../../redux/authReducers/actionCreators"
 import style from "./loginForm.module.scss"
 import "react-toastify/dist/ReactToastify.css";
 
@@ -69,10 +69,10 @@ const LoginForm: FC = () => {
                     {register && 
                         <input
                             className="form-control"
-                            onChange={(e) => setNickname(e.target.value)}
-                            value={nickname}
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                             type="text"
-                            placeholder="Никнейм"
+                            placeholder="Почта"
                         />
                     }
                     <input

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import PostServise from '../../services/PostService';
+import PostServise from '../../services/postService';
 interface ICreateComment {
     id: string;
     text: string;

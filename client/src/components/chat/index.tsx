@@ -2,7 +2,7 @@ import Contacts from "./contacts";
 import style from "./chat.module.scss";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getAllUsers } from "../../redux/UsersReducers/actionCreators";
+import { getAllUsers } from "../../redux/usersReducers/actionCreators";
 import ChatContainer from "./chatContainer";
 import { IContact } from "../../models/IContact";
 

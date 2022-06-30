@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import UserService from '../../services/UserService';
+import UserService from '../../services/userService';
 
 export const searchUsers = createAsyncThunk(
     'users/searchUsers',
@@ -14,10 +14,10 @@ export const searchUsers = createAsyncThunk(
 )
 
 export const getUser = createAsyncThunk(
-    'users/getUser',
-    async (email: string, thunkAPI) => {
+    'users/getUserOne',
+    async (nickname: string, thunkAPI) => {
         try {
-            const response = await UserService.getUser(email);
+            const response = await UserService.getUser(nickname);
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("");
@@ -41,7 +41,9 @@ export const sendFriendRequest = createAsyncThunk(
     'users/friendsend',
     async (nickname: string, thunkAPI) => {
         try {
-            const response = await UserService.sendFriendRequest(nickname);
+            await UserService.sendFriendRequest(nickname);
+            // const response = await UserService.sendFriendRequest(nickname);
+            const response = await UserService.getUser(nickname);
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("");

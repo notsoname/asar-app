@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import AuthService from '../../services/AuthService';
+import AuthService from '../../services/authService';
 import axios from 'axios';
 import { AuthResponse } from '../../models/response/AuthResponse';
 import { API_URL } from '../../api';

@@ -64,6 +64,7 @@ export const UsersSlice = createSlice({
         },
 
         [getUser.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+            console.log(action)
             state.isLoading = false;
             state.error = '';
             state.user = action.payload;

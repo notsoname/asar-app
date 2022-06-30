@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useAppDispatch } from "../../hooks";
-import { createPost } from "../../redux/PostsReducer/actionCreators";
+import { createPost } from "../../redux/postsReducer/actionCreators";
 import PostItems from "../posts/postsItems";
 
 const Home: FC = () => {
