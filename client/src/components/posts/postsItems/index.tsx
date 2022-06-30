@@ -8,7 +8,7 @@ export default function PostItems() {
 
     const {posts} = useAppSelector(state => state.PostReducer)
     const {currentUser} = useAppSelector(state => state.AuthReducer)
-
+    console.log(posts)
     const onLike = (_id: string) => {
         dispatch(likePost(_id))
     }

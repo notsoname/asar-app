@@ -27,7 +27,6 @@ app.use(cors({
     origin: process.env.CLIENT_URL
 }));
 
-
 app.use('/api', postRouter)
 app.use('/api', authRouter)
 app.use('/api', usersRouter)
@@ -41,28 +40,7 @@ const startApp = async () => {
             useUnifiedTopology: true, 
             useNewUrlParser: true
         });
-        const server = app.listen(PORT, () => console.log("start" + PORT))
-        const io = socket(startApp, {
-            cors: {
-                credentials: true,
-                origin: process.env.CLIENT_URL
-            }
-        })
-        
-        global.onlineUsers = new Map();
-        
-        io.on("connection", (socket) => {
-            global.chatSocket = socket;
-            socket.on("add-user", (userId) => {
-                onlineUsers.set(userId, socket.id);
-            });
-            socket.on("send-msg", (data) => {
-                const sendUserSocket = onlineUsers.get(data.to);
-                if (sendUserSocket) {
-                  socket.to(sendUserSocket).emit("msg-recieve", data.msg);
-                }
-            });       
-        })       
+        app.listen(PORT, () => console.log("start" + PORT))              
     } catch (error) {
         console.log(error)
     }

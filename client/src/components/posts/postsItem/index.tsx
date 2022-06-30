@@ -45,7 +45,7 @@ const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComm
                     ? <Button variant="primary" onClick={() => unlike(_id)}><HeartFill/></Button>
                     : <Button variant="primary" onClick={() => like(_id)}><Heart/></Button>
                 }
-                {comments.length > 5 
+                {comments.length > 100 
                     ? <><div>посмотреть все</div>
                     <strong>{comments[0].text}</strong></>
                     : comments?.map(comment => (

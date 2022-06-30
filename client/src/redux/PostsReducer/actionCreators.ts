@@ -89,6 +89,7 @@ export const createComment = createAsyncThunk(
             await PostServise.createComment(id, text)
             const response = await PostServise.fetchPosts()
             // const response = await PostServise.createComment(id, text)
+            // console.log(response)
             return response.data;
         } catch (e: any) {
             return thunkAPI.rejectWithValue(e.response.data.message)

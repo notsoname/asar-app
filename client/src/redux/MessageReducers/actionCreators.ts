@@ -10,7 +10,9 @@ export const sendMessage = createAsyncThunk(
     'messages/send',
     async ({to, message}: ICreateMessage, thunkAPI) => {
         try {
-            const response = await MessageService.sendMessage(to, message);
+            await MessageService.sendMessage(to, message);
+            // const response = await MessageService.sendMessage(to, message);
+            const response = await MessageService.getMessages(to);
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("");

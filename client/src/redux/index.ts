@@ -2,13 +2,13 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import AuthReducer from "./AuthReducers/AuthSlice";
 import PostReducer from "./PostsReducer/PostsSlice";
 import UsersRecuder from "./UsersReducers/UsersSlice";
-import Messagereducer from "./MessageReducers/MessagesSlice";
+import MessageReducer from "./MessageReducers/MessagesSlice";
 
 const rootReducer = combineReducers( {
   AuthReducer,
   PostReducer,
   UsersRecuder,
-  Messagereducer
+  MessageReducer
 })
 
 export const setupStore = () => {

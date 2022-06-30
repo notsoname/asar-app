@@ -22,7 +22,8 @@ const initialState: PostsState = {
 export const PostsSlice = createSlice({
     name: 'posts',
     initialState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: {
         [fetchPosts.fulfilled.type]: (state, action: PayloadAction<IPost[]>) => {
             state.isLoading = false;
@@ -103,9 +104,8 @@ export const PostsSlice = createSlice({
         },
 
         [createComment.fulfilled.type]: (state, action: PayloadAction<IPost[]>) => {
-            console.log(action)
             state.isLoading = false;
-            state.error = ''
+            state.error = '';
             state.posts = action.payload;
         },
         [createComment.pending.type]: (state) => {
