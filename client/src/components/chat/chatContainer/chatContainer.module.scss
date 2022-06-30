@@ -11,5 +11,29 @@
     border-bottom: 1px solid black;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem;
+    height: 15%;
+}
+
+.messages {
+    height: 80%;
+}
+
+
+.input {
+    position: relative;
+    height: 5%;
+    input {
+        font-size: 1.2rem;
+    }
+}
+
+.picker {
+    position: absolute;
+    top: -325px;
+}
+
+.sended {
+    display: flex;
+    justify-content: flex-end;
 }

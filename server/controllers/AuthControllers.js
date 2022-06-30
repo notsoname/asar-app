@@ -25,8 +25,8 @@ class AuthControllers {
             if (!errors.isEmpty()) {
                 return next(ApiError.BadRequest("error", errors.array()))
             }
-            const {email, password} = req.body;
-            const userData = await UserService.login(email, password)
+            const {nickname, password} = req.body;
+            const userData = await UserService.login(nickname, password)
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
             return res.json(userData)
         } catch (e) {

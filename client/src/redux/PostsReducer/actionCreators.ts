@@ -83,11 +83,12 @@ export const unlikePost = createAsyncThunk(
 )
 
 export const createComment = createAsyncThunk(
-    'posts/unlikePost',
+    'posts/createComment',
     async ({id, text}: ICreateComment, thunkAPI) => {
         try {
             await PostServise.createComment(id, text)
             const response = await PostServise.fetchPosts()
+            // const response = await PostServise.createComment(id, text)
             return response.data;
         } catch (e: any) {
             return thunkAPI.rejectWithValue(e.response.data.message)

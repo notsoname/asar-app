@@ -1,8 +1,19 @@
 const {Schema, model} = require('mongoose');
 
 const MessageSchema = new Schema({
-    nickname: {type: String, required: true, ref: "User"},
-    message: {type: String, required: true}, 
-})
+    message: {
+        text: { type: String, required: true },
+    },
+    users: Array,
+    sender: {
+        type: String,
+        ref: "User",
+        required: true,
+    },
+    },
+    {
+    timestamps: true,
+    }
+)
 
-module.exports = model('Message', MessageSchema);
+module.exports = model('Messages', MessageSchema);

@@ -77,11 +77,11 @@ const LoginForm: FC = () => {
                     }
                     <input
                         className="form-control"
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
+                        onChange={(e) => setNickname(e.target.value)}
+                        value={nickname}
                         autoComplete="on"
                         type="text"
-                        placeholder="Почта"
+                        placeholder="Никнейм"
                     />
                     <input
                         className="form-control"
@@ -97,7 +97,7 @@ const LoginForm: FC = () => {
                                     <div>Имеется аккаунт? <NavLink to={""} onClick={() => setRegister(!register)}>логин</NavLink></div>
                                 </>
                             :   <>
-                                    <button className="btn btn-primary" onClick={onLogin} disabled={!email || !password}>Войти</button>
+                                    <button className="btn btn-primary" onClick={onLogin} disabled={!nickname || !password}>Войти</button>
                                     <div>Нет аккаунта? <NavLink to={""} onClick={() => setRegister(!register)}>зарегистрироваться</NavLink></div>
                                 </>
                         }

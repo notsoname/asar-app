@@ -5,20 +5,27 @@ const async = require('async');
 const UserModel = require('../models/UserModel');
 
 class MessageService {
-    async getMessages() {
-        // if (!user.friends.includes(sender.nickname)) {
-        //     throw ApiError.BadRequest("Пользователь уже в друзьях")
-        // }
-        const messages = await MessageModel.find();
-        return messages;
+    async getMessages(from, to) {
+        const messages = await MessageModel.find({
+            users: {
+                $all: [from, to]
+            },
+        }).sort({ updatedAt: 1 });
+        const projectedMessages = messages.map((msg) => {
+            return {
+                fromSelf: msg.sender.toString() === from,
+                message: msg.message.text,
+            };
+        })
+        return projectedMessages;
     }
 
-    async sendMessages(nickname, text) {
-        // if (!user.friends.includes(sender.nickname)) {
-        //     throw ApiError.BadRequest("Пользователь уже в друзьях")
-        // }
-        const messages = await new MessageModel({nickname,message});
-        messages.save();
+    async sendMessages(from, to, message) {
+        const messages = await MessageModel.create({
+            message: {text: message},
+            users: [from, to],
+            sender: from
+        });
         return messages;
     }
 }
