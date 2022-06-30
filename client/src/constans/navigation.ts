@@ -7,6 +7,10 @@ const nav = [
       name: "Пользователи",
       link: "/users",
     },
+    {
+      name: "Chat",
+      link: "/chat",
+    },
   ];
 
 export default nav

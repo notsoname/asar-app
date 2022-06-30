@@ -1,0 +1,30 @@
+.container {
+    border-right: 1px solid black;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 0.2rem;
+        &-thumb {
+            background-color: white;
+            width: 0.1rem;
+            border-radius: 1rem;
+        }
+    }
+}
+
+.avatar {
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.contact {
+    background-color: grey;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.4s ease-in-out;
+}
+
+.selected {
+    background-color: black;
+}

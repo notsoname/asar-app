@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import AuthService from '../../services/AuthService';
 import axios from 'axios';
@@ -14,6 +15,16 @@ interface IRegister {
     nickname: string;
 }
 
+const toastoption: any = {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+}
+
 export const login = createAsyncThunk(
     'auth/login',
     async ({nickname, password}:ILogin, thunkAPI) => {
@@ -22,7 +33,7 @@ export const login = createAsyncThunk(
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
         } catch (e: any) {
-            return thunkAPI.rejectWithValue(e.response.data.message)
+            return thunkAPI.rejectWithValue(toast.error(e.response.data.message, toastoption))
         }
     }
 )

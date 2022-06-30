@@ -78,7 +78,12 @@ class UserService {
             {
             _id: { $ne: currentUser }
             }
-        );
+        ).select([
+            "email",
+            "nickname",
+            "avatar",
+            "_id"
+        ]);
         return users;
     }
 

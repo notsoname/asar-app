@@ -16,6 +16,10 @@ export default class UserService {
         })
     }
 
+    static async getAllUsers(): Promise<AxiosResponse<IUser[]>> {
+        return api.get<IUser[]>('/users')
+    }
+
     static async sendFriendRequest(nickname: string): Promise<AxiosResponse<IUser>> {
         return api.put('/users/friends', {nickname})
     }

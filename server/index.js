@@ -9,18 +9,24 @@ const friendsRouter = require('./router/friendsRouter.js');
 const errorMiddleWare = require('./middlewares/errorMiddleware');
 const usersRouter = require('./router/userRouter.js');
 const fileUpload = require('express-fileupload');
+const http = require('http');
+const io = require('socket.io');
 
 const PORT = process.env.PORT || 5000;
 const app = express()
 
+
 app.use(express.json());
 app.use(express.static('static'))
 app.use(fileUpload({}))
+app.use(fileUpload({}))
 app.use(cookieParser());
+
 app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL
 }));
+
 
 app.use('/api', postRouter)
 app.use('/api', authRouter)

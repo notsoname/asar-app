@@ -25,6 +25,18 @@ export const getUser = createAsyncThunk(
     }
 )
 
+export const getAllUsers = createAsyncThunk(
+    'users/getUser',
+    async (_, thunkAPI) => {
+        try {
+            const response = await UserService.getAllUsers();
+            return response.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue("");
+        }
+    }
+)
+
 export const sendFriendRequest = createAsyncThunk(
     'users/friendsend',
     async (nickname: string, thunkAPI) => {
