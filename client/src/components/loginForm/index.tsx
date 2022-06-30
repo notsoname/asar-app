@@ -15,7 +15,7 @@ const LoginForm: FC = () => {
 
     const onLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
-        dispatch(login({email, password}))
+        dispatch(login({nickname, password}))
     }
 
     const onRegister = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

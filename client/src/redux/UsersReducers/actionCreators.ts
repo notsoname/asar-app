@@ -3,9 +3,9 @@ import UserService from '../../services/UserService';
 
 export const searchUsers = createAsyncThunk(
     'users/searchUsers',
-    async (email: string, thunkAPI) => {
+    async (nickname: string, thunkAPI) => {
         try {
-            const response = await UserService.searchUsers(email);
+            const response = await UserService.searchUsers(nickname);
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("");

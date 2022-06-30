@@ -5,20 +5,20 @@ import { AuthResponse } from '../../models/response/AuthResponse';
 import { API_URL } from '../../api';
 
 interface ILogin {
-    email: string;
+    nickname: string;
     password: string;
 }
 interface IRegister {
-    email: string;
+    email: string; 
     password: string;
     nickname: string;
 }
 
 export const login = createAsyncThunk(
     'auth/login',
-    async ({email, password}:ILogin, thunkAPI) => {
+    async ({nickname, password}:ILogin, thunkAPI) => {
         try {
-            const response = await AuthService.login(email, password)
+            const response = await AuthService.login(nickname, password)
             localStorage.setItem('token', response.data.accessToken)
             return response.data;
         } catch (e: any) {

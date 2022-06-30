@@ -4,9 +4,9 @@ import { IUser} from "../models/IUser";
 import { UserResponse } from "../models/response/UsersReponse";
 
 export default class UserService {
-    static async searchUsers(email: string): Promise<AxiosResponse<IUser[]>> {
+    static async searchUsers(nickname: string): Promise<AxiosResponse<IUser[]>> {
         return api.get('/users/search', {
-            params: {email}
+            params: {nickname}
         })
     }
 
