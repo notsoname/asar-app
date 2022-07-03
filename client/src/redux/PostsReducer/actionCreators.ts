@@ -108,3 +108,18 @@ export const createComment = createAsyncThunk(
         }
     }
 )
+
+export const updatePost = createAsyncThunk(
+    'posts/createComment',
+    async (post: Object, thunkAPI) => {
+        try {
+            await PostServise.updatePost(post)
+            const response = await PostServise.fetchPosts()
+            // const response = await PostServise.createComment(id, text)
+            // console.log(response)
+            return response.data;
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue(e.response.data.message)
+        }
+    }
+)

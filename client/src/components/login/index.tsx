@@ -105,7 +105,6 @@ const LoginForm: FC = () => {
                 </div>
             </form>
             <ToastContainer/>
-            {/* {error && <div>{error}</div>} */}
         </>
     )
 }

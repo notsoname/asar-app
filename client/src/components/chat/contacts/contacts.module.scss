@@ -1,5 +1,6 @@
 .container {
-    border-right: 1px solid black;
+    border-right: 1px solid rgba(112, 124, 151, 0.1);
+    background: linear-gradient(180deg, #F3F3FB 0%, #FDFBFD 100%);
     overflow: auto;
     &::-webkit-scrollbar {
         width: 0.2rem;
@@ -18,13 +19,13 @@
 }
 
 .contact {
-    background-color: grey;
+    background: #FFFFFF;
+    border-radius: 6px;
     margin: 10px 0;
     cursor: pointer;
-    border-radius: 4px;
     transition: 0.4s ease-in-out;
 }
 
 .selected {
-    background-color: black;
+    background: linear-gradient(96.78deg, #7CB8F7 0%, #2A8BF2 100%);
 }

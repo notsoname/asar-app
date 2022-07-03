@@ -53,7 +53,7 @@ export const UsersSlice = createSlice({
         [acceptFriendRequest.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
             state.isLoading = false;
             state.error = ''
-            state.users = action.payload;
+            state.user = action.payload;
         },
         [acceptFriendRequest.pending.type]: (state) => {
             state.isLoading = true;
@@ -66,7 +66,7 @@ export const UsersSlice = createSlice({
         [deleteFriend.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
             state.isLoading = false;
             state.error = ''
-            // state.users = action.payload;
+            state.user = action.payload;
         },
         [deleteFriend.pending.type]: (state) => {
             state.isLoading = true;

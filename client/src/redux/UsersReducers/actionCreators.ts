@@ -55,7 +55,8 @@ export const acceptFriendRequest = createAsyncThunk(
     'users/friendAccept',
     async (nickname: string, thunkAPI) => {
         try {
-            const response = await UserService.acceptFriendRequest(nickname);
+            await UserService.acceptFriendRequest(nickname);
+            const response = await UserService.getUser(nickname);
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("");
@@ -67,7 +68,8 @@ export const deleteFriend = createAsyncThunk(
     'users/friendAccept',
     async (nickname: string, thunkAPI) => {
         try {
-            const response = await UserService.deleteFriend(nickname);
+            await UserService.deleteFriend(nickname);
+            const response = await UserService.getUser(nickname);
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("");

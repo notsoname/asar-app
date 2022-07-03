@@ -12,6 +12,6 @@ const PostSchema = new Schema({
         postedBy:{type: String,ref:"User"}
     }],
     // postedBy: {type: Schema.Types.ObjectId, ref: 'User'}
-})
+}, {timestamps: true})
 
 module.exports = model('Post', PostSchema);

@@ -10,7 +10,7 @@ postRouter.get('/posts/:id', PostControllers.getOne)
 postRouter.put('/posts/like', authMiddleWare, PostControllers.like)
 postRouter.put('/posts/unlike', authMiddleWare, PostControllers.unlike)
 postRouter.put('/posts/comment',authMiddleWare, PostControllers.createComment)
-// postRouter.put('/posts', PostControllers.update)
+postRouter.put('/posts/update', authMiddleWare, PostControllers.update)
 postRouter.delete('/posts/:id', authMiddleWare, PostControllers.delete)
 
 module.exports = postRouter

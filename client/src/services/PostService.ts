@@ -36,4 +36,8 @@ export default class PostServise {
     static async deletePost(_id: string): Promise<AxiosResponse<IPost>> {
         return api.delete(`/posts/${_id}/`)
     }
+
+    static async updatePost(post: Object,): Promise<AxiosResponse<IPost>> {
+        return api.put(`/posts/update`, post)
+    }
 }

@@ -1,5 +1,5 @@
 import { FC, FormEvent, useEffect, useRef, useState } from "react";
-import { Send } from "react-bootstrap-icons";
+import { Send, SendFill } from "react-bootstrap-icons";
 import { IContact } from "../../../models/IContact";
 import style from "./chatContainer.module.scss";
 import Picker from 'emoji-picker-react';
@@ -8,8 +8,7 @@ import { getMessages, sendMessage } from "../../../redux/messageReducers/actionC
 import { io } from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import { Button, FormControl, Input, TextField } from '@mui/material';
-
+import { Form, Button } from "react-bootstrap";
 
 interface ChateContainerProps {
     currentChat: IContact
@@ -25,7 +24,7 @@ const ChatContainer: FC<ChateContainerProps> = ({currentChat}) => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const socket = useRef(io("ws://localhost:8900"))
     const [arrivalMessage, setArrivalMessage] = useState<any>(null);
-    const {messages, isLoading} = useAppSelector(state => state.MessageReducer)
+    const {messages} = useAppSelector(state => state.MessageReducer)
     const [onlineUsers, setOnlineUsers] = useState<Array<string>>([])
 
     useEffect(() => {
@@ -70,7 +69,6 @@ const ChatContainer: FC<ChateContainerProps> = ({currentChat}) => {
         setMessage(msg)
     };
 
-    
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
@@ -87,17 +85,30 @@ const ChatContainer: FC<ChateContainerProps> = ({currentChat}) => {
                         <div ref={scrollRef} key={uuidv4()} className={`${style.message} ${message.fromSelf ? style.sended : style.recieved}`}>
                             <p>{message.message}</p>
                         </div>))
-                    : <div>Напишите что-нибудь</div>
+                    : <h2>Send something</h2>
                 }
             </div>
-            <form className={`d-flex ${style.input}`} onSubmit={handleSendMessage}>
+            <Form className={`d-flex w-100 ${style.input}`} onSubmit={handleSendMessage}>
                 {showEmojiPicker ? <div className={style.picker}><Picker onEmojiClick={onEmojiClick}/></div> : ""}
                 <EmojiEmotionsIcon className={style.emoji} onClick={() => setShowEmojiPicker(!showEmojiPicker)}/>
-                <FormControl className="w-100">
-                    <TextField size="small" id="outlined-basic" label="Сообщение" variant="outlined" value={message} onChange={(e) => setMessage(e.target.value)}/>
-                </FormControl>
-                <Button className="w-25" variant="contained" type="submit" endIcon={<Send/>} disabled={!message.length}>Отправить</Button>
-            </form>
+                <Form.Group className="w-75">
+                    <Form.Control
+                        type="text" 
+                        placeholder="Message" 
+                        value={message} 
+                        onChange={(e) => setMessage(e.target.value)}
+                    />
+                </Form.Group>
+                <Button 
+                    className="w-25"
+                    variant="primary" 
+                    type="submit"
+                    disabled={!message.length}
+                >
+                    <span>Send </span>
+                    <SendFill/>
+                </Button>
+            </Form>
             
         </div>
     )

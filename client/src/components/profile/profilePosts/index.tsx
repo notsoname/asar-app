@@ -23,7 +23,7 @@ const ProfilePosts: FC<ProfilePostsProps> = ({posts}) => {
         <>
             <div className="d-flex flex-wrap mt-2">
                 {posts.map(post => (
-                    <div className="w-25 h-25" key={post._id}>  
+                    <div className="w-25" key={post._id}>  
                         <img 
                             className="w-100 p-1 h-100" 
                             onClick={() => handleShow(post._id)} 

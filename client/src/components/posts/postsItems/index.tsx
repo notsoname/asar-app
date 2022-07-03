@@ -9,25 +9,30 @@ export default function PostItems() {
 
     const {posts} = useAppSelector(state => state.PostReducer)
     const {currentUser} = useAppSelector(state => state.AuthReducer)
+    const [show, setShow] = useState<Boolean>(false)
     const onLike = (_id: string) => {
-        dispatch(likePost(_id))
+        dispatch(likePost(_id));
+        setShow(true);
+        setTimeout(() => {
+            setShow(false);
+        }, 800);
     }
 
     const onUnlike = (_id: string) => {
-        dispatch(unlikePost(_id))
+        dispatch(unlikePost(_id));
     }
 
     const deleteP = (_id: string) => {
-        dispatch(deletePost(_id))
+        dispatch(deletePost(_id));
     }
 
     const onCreateComment = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: string, text: string) => {
         e.preventDefault();
-        dispatch(createComment({id, text}))
+        dispatch(createComment({id, text}));
     }
 
     useEffect(() => {
-        dispatch(fetchPosts())
+        dispatch(fetchPosts());
     }, [])
 
     return (
@@ -43,6 +48,7 @@ export default function PostItems() {
                             nickname={currentUser.nickname}
                             onCreateComment={(e, id, text) => onCreateComment(e,id, text)}
                             deleteP={(_id) => deleteP(_id)}
+                            show={show}
                         />
                     ))}
             </div>

@@ -8,7 +8,8 @@
 }
 
 .header {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(112, 124, 151, 0.1);
+    background-color: #FAFBFF;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -22,7 +23,9 @@
 
 .message {
     p {
-        background-color: grey;
+        background: linear-gradient(90.54deg, #60A9F6 0%, #2A8BF2 100%);
+        box-shadow: 10px 10px 25px rgba(42, 139, 242, 0.1), 15px 15px 35px rgba(42, 139, 242, 0.05), 10px 10px 50px rgba(42, 139, 242, 0.1);
+        border-radius: 0px 10px 10px 10px;
         padding: 12px;
         border-radius: 4px;
     }
@@ -47,7 +50,9 @@
     display: flex;
     justify-content: flex-end;
     p {
-        background-color:lightblue;
+        background: #FFFFFF;
+        border: 1px solid rgba(112, 124, 151, 0.25);
+        box-shadow: 10px 10px 25px rgba(112, 124, 151, 0.05), 15px 15px 35px rgba(112, 124, 151, 0.05);
     }
 }
 

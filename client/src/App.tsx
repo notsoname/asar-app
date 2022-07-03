@@ -5,7 +5,7 @@ import LoginForm from "./components/login";
 import routes from "./constans/routes";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { checkAuth, login } from "./redux/authReducers/actionCreators";
-import style from "./styles/app.module.scss"
+import style from "./app.module.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loader from "./components/loader/loader";
 
@@ -26,9 +26,9 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={`d-flex ${style.app}`}>
       <Header/>
-      <div className="container-fluid mt-3">
+      <div className={`container p-2 ${style.container}`}>
         <Routes>
           {routes.map((route) => (
             <Route

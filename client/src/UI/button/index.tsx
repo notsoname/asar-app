@@ -3,13 +3,13 @@ import style from "./index.module.scss";
 
 interface ButtomProps {
     text: string;
-    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    // onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     className: string;
 }
 
-const MyButton: FC<ButtomProps> = ({className, text, onClick}) => {
+const MyButton: FC<ButtomProps> = ({className, text}) => {
     return (
-        <button className={className} onClick={onClick}>{text}</button>
+        <button className={className}>{text}</button>
     )
 }
 
