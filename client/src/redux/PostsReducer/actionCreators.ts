@@ -17,6 +17,18 @@ export const fetchPosts = createAsyncThunk(
     }
 )
 
+export const getOnePost = createAsyncThunk(
+    'posts/getOnePost',
+    async (id: string, thunkAPI) => {
+        try {
+            const response = await PostServise.getOnePost(id)
+            return response.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue("")
+        }
+    }
+)
+
 export const getUserPosts = createAsyncThunk(
     'posts/getUserPosts',
     async (nickname: string, thunkAPI) => {

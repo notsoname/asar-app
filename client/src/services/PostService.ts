@@ -7,6 +7,10 @@ export default class PostServise {
         return api.get<IPost[]>('/posts')
     }
 
+    static async getOnePost(_id: string): Promise<AxiosResponse<IPost[]>> {
+        return api.get<IPost[]>(`/posts/${_id}`)
+    }
+
     static async getUserPosts(nickname: string): Promise<AxiosResponse<IPost[]>> {
         return api.get<IPost[]>('/posts/userPosts', {
             params: {nickname}

@@ -12,21 +12,18 @@ const usersRouter = require('./router/userRouter.js');
 const fileUpload = require('express-fileupload');
 const http = require('http');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 const app = express()
 const socket = require('socket.io');
 
 app.use(express.json());
 app.use(express.static('static'));
 app.use(fileUpload({}));
-app.use(fileUpload({}));
 app.use(cookieParser());
-
 app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL
 }));
-
 app.use('/api', postRouter)
 app.use('/api', authRouter)
 app.use('/api', usersRouter)

@@ -20,6 +20,15 @@ class FriendsControllers {
             next(e)
           }
     }
+
+    async deleteFriend(req, res, next) {
+        try {
+            const friend = await FriendsService.deleteFriend(req.user.nickname, req.body.nickname)
+            res.json(friend)
+          } catch (e) {
+            next(e)
+          }
+    }
 }
 
 module.exports = new FriendsControllers()

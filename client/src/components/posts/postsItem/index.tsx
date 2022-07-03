@@ -13,6 +13,7 @@ interface PostItemProps {
     onCreateComment: (e: React.MouseEvent<HTMLButtonElement>, _id: string, text: string) => void
     deleteP: (_id: string) => void
 }
+export const API = "http://localhost:5050"
 
 const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComment, deleteP}) => {
     const {_id, image, description, likes, postedBy, comments} = post;
@@ -32,7 +33,7 @@ const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComm
             }
             <Card.Img 
                 variant="top" 
-                src={image}
+                src={`${API}/${image}`}
                 onDoubleClick={() => likes.includes(nickname)
                     ? unlike(_id) 
                     : like(_id)} 

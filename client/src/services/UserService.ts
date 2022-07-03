@@ -27,4 +27,8 @@ export default class UserService {
     static async acceptFriendRequest(nickname: string): Promise<AxiosResponse<IUser>> {
         return api.put('/users/friends/accept', {nickname})
     }
+
+    static async deleteFriend(nickname: string): Promise<AxiosResponse<IUser>> {
+        return api.put('/users/friends/delete', {nickname})
+    }
 }

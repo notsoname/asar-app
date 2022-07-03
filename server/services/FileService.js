@@ -10,7 +10,7 @@ class FileService {
             return fileName;
         } catch (e) {
             console.log(e)
-        } 
+        }
     }
 }
 

@@ -20,9 +20,18 @@
     overflow: auto;
 }
 
+.message {
+    p {
+        background-color: grey;
+        padding: 12px;
+        border-radius: 4px;
+    }
+}
 
 .input {
     position: relative;
+    display: flex;
+    align-items: center;
     height: 5%;
     input {
         font-size: 1.2rem;
@@ -37,4 +46,18 @@
 .sended {
     display: flex;
     justify-content: flex-end;
+    p {
+        background-color:lightblue;
+    }
+}
+
+.recieved {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.emoji {
+    // position: absolute;
+    // left: 0;
+    // z-index: 10;
 }

@@ -17,8 +17,17 @@ class FriendService {
         // if (!accepter) {
         //     throw new Error('User not found')
         // }
-        const friend1 = await UserModel.findOneAndUpdate({nickname: accepter}, {$addToSet: {friends: sender}, $pull: {requests: sender}})
-        const friend2 = await UserModel.findOneAndUpdate({nickname: sender}, {$addToSet: {friends: accepter}})
+        const friend1 = await UserModel.findOneAndUpdate({nickname: accepter}, {$addToSet: {friends: sender}, $pull: {requests: sender}});
+        const friend2 = await UserModel.findOneAndUpdate({nickname: sender}, {$addToSet: {friends: accepter}});
+        return [friend1, friend2];
+    }
+
+    async deleteFriend(sender, accepter) {
+        // if (!accepter) {
+        //     throw new Error('User not found')
+        // }
+        const friend1 = await UserModel.findOneAndUpdate({nickname: accepter}, {$pull: {friends: sender}});
+        const friend2 = await UserModel.findOneAndUpdate({nickname: sender}, {$pull: {friends: accepter}});
         return [friend1, friend2];
     }
 }

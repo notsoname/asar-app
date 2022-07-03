@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IContact } from "../../models/IContact";
 import { IUser } from "../../models/IUser";
-import { acceptFriendRequest, getAllUsers, getUser, searchUsers, sendFriendRequest } from "./actionCreators";
+import { acceptFriendRequest, deleteFriend, getAllUsers, getUser, searchUsers, sendFriendRequest } from "./actionCreators";
 
 interface UsersState {
     users: IUser[];
@@ -63,8 +63,20 @@ export const UsersSlice = createSlice({
             state.error = action.payload
         },
 
+        [deleteFriend.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
+            state.isLoading = false;
+            state.error = ''
+            // state.users = action.payload;
+        },
+        [deleteFriend.pending.type]: (state) => {
+            state.isLoading = true;
+        },
+        [deleteFriend.rejected.type]: (state,  action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = action.payload
+        },
+
         [getUser.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
-            console.log(action)
             state.isLoading = false;
             state.error = '';
             state.user = action.payload;

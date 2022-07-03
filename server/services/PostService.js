@@ -3,17 +3,16 @@ const PostDto = require('../dtos/PostDto');
 const ApiError = require('../exceptions/apiError.js');
 const FileService = require('./FileService');
 class PostService {
-    async create(post) {
-        const createdPost = await PostModel.create(post);
-        const postDto = new PostDto(createdPost); 
-        return {post: postDto};
-    }
-    // async create(post, image) {
-    //     const fileName = FileService.saveFile(image);
-    //     const createdPost = await PostModel.create({...post, image: fileName});
-    //     // const postDto = new PostDto(createdPost); 
-    //     return {post: createdPost};
+    // async create(post) {
+    //     const createdPost = await PostModel.create(post);
+    //     const postDto = new PostDto(createdPost); 
+    //     return {post: postDto};
     // }
+    async create(post, image) {
+        const fileName = FileService.saveFile(image);
+        const createdPost = await PostModel.create({...post, image: fileName});
+        return {post: createdPost};
+    }
 
     async getAll() {
         const createdPosts = await PostModel.find();
