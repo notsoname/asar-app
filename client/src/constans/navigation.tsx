@@ -1,4 +1,4 @@
-import { ChatDotsFill, HouseDoorFill, PeopleFill } from "react-bootstrap-icons";
+import { ChatDotsFill, HouseDoorFill, MusicNoteList, PeopleFill } from "react-bootstrap-icons";
 
 const nav = [
     {
@@ -15,6 +15,11 @@ const nav = [
       name: "CHAT",
       link: "/chat",
       icon: <ChatDotsFill/>
+    },
+    {
+      name: "MUSIC",
+      link: "/music",
+      icon: <MusicNoteList/>
     },
   ];
 

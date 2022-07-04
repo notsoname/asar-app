@@ -8,6 +8,7 @@ import { checkAuth, login } from "./redux/authReducers/actionCreators";
 import style from "./app.module.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loader from "./components/loader/loader";
+import client from "./chared/spotify";
 
 function App() {
   const dispatch = useAppDispatch()

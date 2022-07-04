@@ -22,8 +22,8 @@ export default function Header() {
 
   return (
     <div>
-      <List className={`${style.menu}`} onClick={handleShow}/>
-      <div className={`${style.header} ${show ? style.active : ''} d-flex justify-content-between align-items-center`}>
+      <List className={`${style.menu} ${show ? "" : style.menuActive}`} onClick={handleShow}/>
+      <div className={`${style.header} ${show ? style.active : ""} d-flex justify-content-between align-items-center`}>
         <CloseButton className={style.close} onClick={handleShow}/>
         <ul className="navbar navbar-expand-lg navbar-light d-flex flex-column">
           {nav.map((nav) => (

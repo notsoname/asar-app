@@ -27,7 +27,7 @@ const Chat = () => {
                 changeCurrentChat={changeCurrentChat}/>
             <>
                 {currentChat === undefined
-                    ? <div>Welcome!</div>
+                    ? <div className="d-flex justify-content-center align-items-center h-100 w-100">Welcome!</div>
                     : <ChatContainer currentChat={currentChat}/>}
             </>
         </div>

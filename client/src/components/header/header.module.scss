@@ -31,10 +31,13 @@ a {
 
 .menu {
     font-size: 48px;
-    position: sticky;
+    position: absolute;
     left: 10px;
     top: 10px;
     cursor: pointer;
+}
+.menuActive {
+    position: sticky;
 }
 
 .close {
