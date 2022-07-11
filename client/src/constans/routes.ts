@@ -1,9 +1,9 @@
 import LoginForm from '../components/login';
+import ErrorPage from '../pages/404Page';
 import AdminPage from '../pages/adminPage';
 import ChatPage from '../pages/chatPage';
 import homePage from '../pages/homePage';
 import MusicPage from '../pages/musicPage';
-import PostsPage from '../pages/postsPage';
 import ProfilePage from '../pages/profilePage';
 import UsersPage from '../pages/usersPage';
 
@@ -39,6 +39,10 @@ const routes = [
   {
     path: "/music",
     component: MusicPage,
+  },
+  {
+    path: "*",
+    component: ErrorPage,
   },
 ];
 
