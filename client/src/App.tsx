@@ -10,6 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Loader from "./components/loader/loader";
 import client from "./chared/spotify";
 
+export const API = "http://localhost:5050";
+
 function App() {
   const dispatch = useAppDispatch()
   const {auth, isLoading} = useAppSelector(state => state.AuthReducer)

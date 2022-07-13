@@ -6,6 +6,7 @@ import MusicPlayer from "./musicPlayer";
 
 const Music: FC = () => {
     const [music, setMusic] = useState<any>()
+    const [artist, setArtist] = useState<SpotifyApi.SingleArtistResponse>(Object)
     useEffect( ()  => {
         fetch("https://accounts.spotify.com/api/token", {
           method: "POST",
@@ -24,21 +25,21 @@ const Music: FC = () => {
             } 
           })
           .then(() => {
-              client.getFeaturedPlaylists({ country: "KZ" })
-                .then(data => setMusic(data))
+              client.getArtist("3vvLuXEEf7sl3izJcw0GIn")
+                .then(data => setArtist(data))
           })
           
           .catch((err) => {
             console.log(err);
           });
       }, []);
-      console.log(music)
+      console.log(artist)
     return (
         <div>
             <MusicHeader/>
             <div className="d-flex mt-4">
                 <MusicHistory/>
-                <MusicPlayer/>
+                <MusicPlayer artist={artist}/>
             </div>
         </div>
     )

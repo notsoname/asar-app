@@ -8,6 +8,7 @@ import CommentsItem from "../commentsItem";
 import { HeartFill, ThreeDotsVertical } from "react-bootstrap-icons";
 import { useAppDispatch } from "../../../hooks";
 import { updatePost } from "../../../redux/postsReducer/actionCreators";
+import { API } from "../../../App";
 
 interface PostItemProps {
     post: IPost;
@@ -18,7 +19,6 @@ interface PostItemProps {
     deleteP: (_id: string) => void;
     show: Boolean;
 }
-export const API = "http://localhost:5050"
 
 const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComment, deleteP, show}) => {
     const {_id, image, description, likes, postedBy, comments} = post;

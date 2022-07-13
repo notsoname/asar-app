@@ -1,9 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { API } from "../../../App";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { IPost } from "../../../models/IPost";
 import { getOnePost } from "../../../redux/postsReducer/actionCreators";
-import { API } from "../../posts/postsItem";
+
 
 interface ProfilePostsProps {
     posts: IPost[];
@@ -11,7 +12,7 @@ interface ProfilePostsProps {
 const ProfilePosts: FC<ProfilePostsProps> = ({posts}) => {
     const [show, setShow] = useState(false);
     const dispatch = useAppDispatch();
-    const {post} = useAppSelector(state => state.PostReducer);
+    const {post, isLoading} = useAppSelector(state => state.PostReducer);
 
     const handleClose = () => setShow(false);
     const handleShow = (id: string) => {
@@ -33,8 +34,7 @@ const ProfilePosts: FC<ProfilePostsProps> = ({posts}) => {
                     </div>
                 ))}
             </div>
-            {post &&             
-                <Modal 
+            {post && <Modal 
                     show={show} 
                     centered	
                     onHide={handleClose}>

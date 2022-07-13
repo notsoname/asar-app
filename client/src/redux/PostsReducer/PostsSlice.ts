@@ -47,7 +47,8 @@ export const PostsSlice = createSlice({
             state.isLoading = false;
         },
         [getOnePost.rejected.type]: (state,  action: PayloadAction<string>) => {
-            state.error = action.payload
+            state.error = action.payload;
+            state.isLoading = false;
         },
 
         [getUserPosts.fulfilled.type]: (state, action: PayloadAction<IPost[]>) => {
