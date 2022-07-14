@@ -17,7 +17,7 @@ interface PostItemProps {
     unlike: (_id: string) => void;
     onCreateComment: (e: React.MouseEvent<HTMLButtonElement>, _id: string, text: string) => void;
     deleteP: (_id: string) => void;
-    show: Boolean;
+    show: string;
 }
 
 const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComment, deleteP, show}) => {
@@ -52,9 +52,9 @@ const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComm
                 <Card.Img 
                     variant="top" 
                     src={`${API}/${image}`}
-                    onDoubleClick={() => like(_id)}
+                    onDoubleClick={(e) => like(_id)}
                 />
-                <HeartFill className={`${style.reaction} ${show ? style.like : ""}`}/>
+                <HeartFill className={`${style.reaction} ${show === _id ? style.like : ""}`}/>
                 <Card.Body>
                     <div className="d-flex">
                         <Card.Title><Link to={`users/${postedBy}`}  className={style.nickname}>{postedBy}</Link></Card.Title>
@@ -62,7 +62,7 @@ const PostItem: FC<PostItemProps> = ({post, like, unlike, nickname, onCreateComm
                     </div>
                     <LikesItem 
                         likes={likes}
-                        like={like}
+                        like={() => like(_id)}
                         unlike={unlike}
                         nickname={nickname}
                         id={_id}

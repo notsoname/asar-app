@@ -5,4 +5,5 @@ export interface IUser {
     avatar: string;
     friends: Array<string>;
     requests: Array<string>;
+    roles: Array<string>
 }

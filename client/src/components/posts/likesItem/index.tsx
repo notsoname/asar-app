@@ -15,7 +15,7 @@ const LikesItem: FC<LikesItemProps> = ({likes, nickname, unlike, like, id}) => {
             <div className="d-flex align-items-center">
             {likes.includes(nickname)
                 ? <HeartFill onClick={() => unlike(id)}/>
-                : <Heart onClick={() => like(id)}/>
+                : <Heart onClick={(e) => like(id)}/>
             }
             <Card.Text className="ms-1">likes: {likes.length}</Card.Text>
         </div>

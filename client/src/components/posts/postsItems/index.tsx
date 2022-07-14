@@ -9,10 +9,11 @@ export default function PostItems() {
 
     const {posts} = useAppSelector(state => state.PostReducer)
     const {currentUser} = useAppSelector(state => state.AuthReducer)
-    const [show, setShow] = useState<Boolean>(false)
+    const [show, setShow] = useState<any>("")
+    
     const onLike = (_id: string) => {
         dispatch(likePost(_id));
-        setShow(true);
+        setShow(_id);
         setTimeout(() => {
             setShow(false);
         }, 800);

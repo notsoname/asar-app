@@ -1,4 +1,4 @@
-import { ChatDotsFill, HouseDoorFill, MusicNoteList, PeopleFill } from "react-bootstrap-icons";
+import { ChatDotsFill, HouseDoorFill, Key, MusicNoteList, PeopleFill } from "react-bootstrap-icons";
 
 const nav = [
     {
@@ -22,5 +22,14 @@ const nav = [
       icon: <MusicNoteList/>
     },
   ];
+
+ export const adminNav = [
+   ...nav,
+   {
+    name: "ADMIN",
+    link: "/admin",
+    icon: <Key/>
+  },
+ ] 
 
 export default nav;
