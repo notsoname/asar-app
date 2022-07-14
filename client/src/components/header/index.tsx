@@ -13,7 +13,7 @@ export default function Header() {
   const onLogout = () => {
     dispatch(logout())
   }
-
+  console.log(currentUser)
   const [show, setShow] = useState<Boolean>(false)
 
   const handleShow = () => {

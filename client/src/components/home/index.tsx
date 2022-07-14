@@ -1,6 +1,4 @@
-import { FC, useState } from "react";
-import { useAppDispatch } from "../../hooks";
-import { createPost } from "../../redux/postsReducer/actionCreators";
+import { FC } from "react";
 import PostItems from "../posts/postsItems";
 
 const Home: FC = () => {

@@ -5,7 +5,7 @@ const UserModel = require('../models/UserModel');
 const UserDto = require('../dtos/UserDto');
 const ApiError = require('../exceptions/apiError');
 const TokenService = require('./TokenService');
-
+const Role = require("../models/RoleModel");
 class UserService {
     async registration(email, password, nickname) {
         const candidate = await UserModel.findOne({email})
@@ -14,8 +14,8 @@ class UserService {
         }
         const hashPassword = await bcrypt.hash(password, 3)
         const activationLink = uuid.v4()
-
-        const user = await UserModel.create({email, nickname, password: hashPassword, activationLink})
+        const userRole = await Role.findOne({value: "USER"})
+        const user = await UserModel.create({email, nickname, password: hashPassword, activationLink, roles: [userRole.value]})
         // await MailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`);
 
         const userDto = new UserDto(user); // id, email, isActivated, nickname

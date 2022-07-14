@@ -9,6 +9,7 @@ import style from "./app.module.scss"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loader from "./components/loader/loader";
 import client from "./chared/spotify";
+import ErrorBoundary from "./components/hoc/errorBoundary";
 
 export const API = "http://localhost:5050";
 
@@ -29,20 +30,22 @@ function App() {
   }
 
   return (
-    <div className={`d-flex ${style.app}`}>
-      <Header/>
-      <div className={`container p-2 ${style.container}`}>
-        <Routes>
-          {routes.map((route) => (
-            <Route
-              key={route.path}
-              path={route.path}
-              element={<route.component />}
-            />
-          ))}
-        </Routes>
+    <ErrorBoundary>
+      <div className={`d-flex ${style.app}`}>
+        <Header/>
+        <div className={`container p-2 ${style.container}`}>
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={<route.component />}
+              />
+            ))}
+          </Routes>
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 }
 

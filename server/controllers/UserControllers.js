@@ -1,5 +1,6 @@
 const PostService = require('../services/PostService.js');
 const UserService = require('../services/UserService.js');
+const Role = require("../models/RoleModel")
 
 class UserControllers {
     async getUsers(req, res, next) {
@@ -11,6 +12,17 @@ class UserControllers {
             next(e)
         }
     }
+
+    // async getUsers(req, res) {
+    //     try {
+    //         const userRole = new Role()
+    //         const adminRole = new Role({value: "ADMIN"})
+    //         await userRole.save()
+    //         await adminRole.save()
+    //     } catch (error) {
+            
+    //     }
+    // }
 
     async getUser(req, res, next) {
         try {
