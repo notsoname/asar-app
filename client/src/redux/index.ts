@@ -3,12 +3,14 @@ import AuthReducer from "./authReducers/authSlice";
 import PostReducer from "./postsReducer/postsSlice";
 import UsersRecuder from "./usersReducers/usersSlice";
 import MessageReducer from "./messageReducers/messagesSlice";
+import AdminPanelReducer from "./adminReducers/adminSlice";
 
 const rootReducer = combineReducers( {
   AuthReducer,
   PostReducer,
   UsersRecuder,
-  MessageReducer
+  MessageReducer,
+  AdminPanelReducer,
 })
 
 export const setupStore = () => {

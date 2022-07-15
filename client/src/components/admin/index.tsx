@@ -7,7 +7,7 @@ import { useAppSelector } from "../../hooks";
 const AdminPanel: FC = () => {
     const {currentUser} = useAppSelector(state => state.AuthReducer);
 
-    if (currentUser.roles[0] !== "ADMIN") {
+    if (currentUser && currentUser.roles[0] !== "ADMIN") {
         return <h1>У вас нет доступа</h1>
     }
 

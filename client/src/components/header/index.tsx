@@ -37,15 +37,15 @@ export default function Header() {
       <div className={`${style.header} ${show ? style.active : ""} d-flex justify-content-between align-items-center`}>
         <CloseButton className={style.close} onClick={handleShow}/>
         <ul className="navbar navbar-expand-lg navbar-light d-flex flex-column">
-          {currentUser.roles[0] == "ADMIN" 
+          {currentUser && currentUser.roles[0] == "ADMIN" 
             ? createNav("ADMIN", adminNav)
             : createNav("", nav)
           }
         </ul>
         <div>
-          {currentUser.requests.length > 0 && <div className="p-2">{currentUser.requests.length} freind request</div>}
+          {currentUser && currentUser.requests.length > 0 && <div className="p-2">{currentUser && currentUser.requests.length} freind request</div>}
           <div className="d-flex justify-content-center">
-            <Link to={"profile"} className="p-2">{currentUser.nickname}</Link>
+            <Link to={"profile"} className="p-2">{currentUser && currentUser.nickname}</Link>
             {auth && <button className="btn btn-primary" onClick={onLogout}>logout</button>}
           </div>
         </div>
